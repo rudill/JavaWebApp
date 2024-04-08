@@ -4,11 +4,15 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.Part;
 import javax.servlet.annotation.MultipartConfig;
+
+import static com.example.webapp.dbConnection.fetchAllFromDb;
 
 @MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
         maxFileSize=1024*1024*10,      // 10MB
@@ -16,6 +20,13 @@ import javax.servlet.annotation.MultipartConfig;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        List<Map<String, Object>> data = fetchAllFromDb();
+        request.setAttribute("data", data);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 //
@@ -34,6 +45,11 @@ public class HelloServlet extends HttpServlet {
             Files.copy(fileContent, Paths.get(uploadDirectory + fileName));
 
             dbConnection.insertToDb(Name, brand, price, description, fileName);
+
+           // response.sendRedirect("index.jsp");
+
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
