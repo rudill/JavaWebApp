@@ -12,6 +12,10 @@ public class dbConnection {
         String url = "jdbc:mysql://localhost:3306/webapp";
         String query = "INSERT INTO product (ProductName, Brand, Price, Category, Description, Image) VALUES ('"+ productName +"', '"+ brand +"', '"+ price +"', '"+category+"' , '"+ description +"' , '"+ fileName +"')";
 
+        dbDriver(driver, url, query);
+    }
+
+    private static void dbDriver(String driver, String url, String query) {
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(url,"root","");
@@ -92,16 +96,6 @@ public static void updateToDb(String ID, String productName, String brand, Strin
         String url = "jdbc:mysql://localhost:3306/webapp";
         String query = "DELETE FROM product WHERE ID = '"+ ID +"'";
 
-        try {
-            Class.forName(driver);
-            Connection con = DriverManager.getConnection(url,"root","");
-            Statement st = con.createStatement();
-            st.executeUpdate(query);
-            System.out.println("MySQL JDBC Driver is in the classpath.");
-
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("MySQL JDBC Driver is not in the classpath.");
-            throw new RuntimeException(e);
-        }
+        dbDriver(driver, url, query);
     }
 }

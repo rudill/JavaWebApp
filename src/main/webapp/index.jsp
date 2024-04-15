@@ -40,6 +40,10 @@
             my_modal_4.showModal();
 
         }
+
+        function showDeleteAlert() {
+            alert("Are you sure you want to delete this product?");
+        }
     </script>
 </head>
 <body class="h-full">
@@ -141,8 +145,8 @@
                                                 </div>
 
                                                 <div class="w-full">
-                                                    <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
-                                                    <input type="file" name="image" id="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                                                    <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white " >Image</label>
+                                                    <input type="file" name="image" id="image" class="file-input file-input-bordered w-full max-w-xs" required="">
                                                 </div>
                                                 <div class="sm:col-span-2">
                                                     <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
@@ -232,168 +236,269 @@
 
                                     </div>
                                 </dialog>
-
-
-
-<%--                                <div class="flex items-center space-x-3 w-full md:w-auto" style="padding-top: 15px">--%>
-
-<%--                                   <form action="hello-servlet" method="get">--%>
-<%--                                       <button type="submit" class="btn btn-primary">--%>
-
-<%--                                           Load data</button>--%>
-<%--                                   </form>--%>
-
-<%--                                </div>--%>
                             </div>
+
                         </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-
-                                    <th scope="col" class="px-4 py-3">Image</th>
-                                    <th scope="col" class="px-4 py-3">Product name</th>
-                                    <th scope="col" class="px-4 py-3">Category</th>
-                                    <th scope="col" class="px-4 py-3">Brand</th>
-                                    <th scope="col" class="px-4 py-3">Description</th>
-                                    <th scope="col" class="px-4 py-3">Price</th>
-                                    <th scope="col" class="px-4 py-3">
-                                        <span class="sr-only">Actions</span>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
 
 
 
+                        <div class="flex flex-col w-full">
+                            <div class="grid hover:bg-base-300/100 card bg-base-300 rounded-box place-items-center">
+                                <div role="tablist" class="tabs tabs-bordered">
+                                    <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Products" checked  />
+                                    <div role="tabpanel" class="tab-content p-10">
+
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                <tr>
+
+                                                    <th scope="col" class="px-4 py-3">Image</th>
+                                                    <th scope="col" class="px-4 py-3">Product name</th>
+                                                    <th scope="col" class="px-4 py-3">Category</th>
+                                                    <th scope="col" class="px-4 py-3">Brand</th>
+                                                    <th scope="col" class="px-4 py-3">Description</th>
+                                                    <th scope="col" class="px-4 py-3">Price</th>
+                                                    <th scope="col" class="px-4 py-3">
+                                                        <span class="sr-only">Actions</span>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                <%
+
+                                                    String driver = "com.mysql.cj.jdbc.Driver";
+                                                    String url = "jdbc:mysql://localhost:3306/webapp";
+                                                    String query = "SELECT * FROM product";
 
 
+                                                    try {
+                                                        Class.forName(driver);
+                                                    } catch (ClassNotFoundException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                    Connection con = null;
+                                                    try {
+                                                        con = DriverManager.getConnection(url,"root","");
+                                                    } catch (SQLException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                    Statement st = null;
+                                                    try {
+                                                        st = con.createStatement();
+                                                    } catch (SQLException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                    ResultSet rs = null;
+                                                    try {
+                                                        rs = st.executeQuery(query);
+                                                    } catch (SQLException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
 
-<%--                <c:forEach var="row" items="${data}">--%>
-<%--                                <tr class="border-b dark:border-gray-700">--%>
-
-
-
-
-<%--                                    <td class="px-4 py-3">--%>
-<%--                                        <div class="flex items--%>
-<%--                                        -center space-x-3">--%>
-<%--                                            <img src= "images/${row.Image}" alt="Product image" class="w-8 h-8 rounded-lg">--%>
-
-<%--                                        </div>--%>
-<%--                                    </td>--%>
-<%--                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">${row.ProductName}</th>--%>
-<%--                                    <td class="px-4 py-3">${row.Category}</td>--%>
-
-<%--                                    <td class="px-4 py-3">${row.Brand}</td>--%>
-
-<%--                                    <td class="px-4 py-3">${row.Description}</td>--%>
-<%--                                    <td class="px-4 py-3">${row.Price}</td>--%>
-<%--                                    <td class="px-4 py-3 flex items-center justify-end">--%>
-
-
-
-
-<%--&lt;%&ndash;                                 need to add the edit &ndash;%&gt;--%>
-
-<%--                                            <button class="btn btn-success" type="button" onclick="showEditModal('${row.ID}', '${row.ProductName}', '${row.Brand}', '${row.Price}', '${row.Category}', '${row.Description}', )">Edit</button>--%>
-
-
-
-
-
-<%--                                        <form action="hello-servlet?method=delete&ID=${row.ID}" method="post">--%>
-<%--                                            <button class="btn btn-error" type="submit">Delete</button>--%>
-<%--                                        </form>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                </c:forEach>--%>
-
-                                <%
-
-                                    String driver = "com.mysql.cj.jdbc.Driver";
-                                    String url = "jdbc:mysql://localhost:3306/webapp";
-                                    String query = "SELECT * FROM product";
-
-
-                                    try {
-                                        Class.forName(driver);
-                                    } catch (ClassNotFoundException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    Connection con = null;
-                                    try {
-                                        con = DriverManager.getConnection(url,"root","");
-                                    } catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    Statement st = null;
-                                    try {
-                                        st = con.createStatement();
-                                    } catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    ResultSet rs = null;
-                                    try {
-                                        rs = st.executeQuery(query);
-                                    } catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-
-                                    while (true) {
-                                        try {
-                                            if (!rs.next()) break;
-                                        } catch (SQLException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                %>
-                                <tr class="border-b dark:border-gray-700">
-                                    <td class="px-4 py-3">
-                                        <div class="flex items
+                                                    while (true) {
+                                                        try {
+                                                            if (!rs.next()) break;
+                                                        } catch (SQLException e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+                                                %>
+                                                <tr class="border-b dark:border-gray-700">
+                                                    <td class="px-4 py-3">
+                                                        <div class="flex items
                                         -center space-x-3">
-                                            <img src= "images/<%=rs.getString("Image")%>" alt="Product image" class="w-8 h-8 rounded-lg">
-                                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%=rs.getString("ProductName")%></th>
+                                                            <img src= "images/<%=rs.getString("Image")%>" alt="Product image" class="w-8 h-8 rounded-lg mask mask-squircle">
+                                                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%=rs.getString("ProductName")%></th>
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-4 py-3"><%=rs.getString("Category")%></td>
+                                                    <td class="px-4 py-3"><%=rs.getString("Brand")%></td>
+                                                    <td class="px-4 py-3"><%=rs.getString("Description")%></td>
+                                                    <td class="px-4 py-3"><%=rs.getString("Price")%></td>
+                                                    <td class="px-4 py-3 flex items-center justify-end">
+                                                        <form style="padding: 5px">
+                                                            <button class="btn btn-success" type="button"
+                                                                    onclick="showEditModal('<%=rs.getString("ID")%>', '<%=rs.getString("ProductName")%>', '<%=rs.getString("Brand")%>', '<%=rs.getString("Price")%>', '<%=rs.getString("Category")%>', '<%=rs.getString("Description")%>', '<%=rs.getString("Image")%>')"
+                                                            >Edit</button>
+                                                        </form>
+                                                        <form action="hello-servlet?method=delete&ID=<%=rs.getString("ID")%>" method="post" style="padding: 5px">
+                                                            <button class="btn btn-error" type="submit" onclick="showDeleteAlert()">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <%
+                                                    }
+                                                    %>
+
+                                                </tbody>
+                                            </table>
+
+                                    </div>
+
+                                    <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Users" />
+                                    <div role="tabpanel" class="tab-content p-10">
+                                        <div class="overflow-x-auto">
+                                            <table class="table">
+                                                <!-- head -->
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        <label>
+                                                            <input type="checkbox" class="checkbox" />
+                                                        </label>
+                                                    </th>
+                                                    <th>Name</th>
+                                                    <th>Job</th>
+                                                    <th>Favorite Color</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <!-- row 1 -->
+                                                <tr>
+                                                    <th>
+                                                        <label>
+                                                            <input type="checkbox" class="checkbox" />
+                                                        </label>
+                                                    </th>
+                                                    <td>
+                                                        <div class="flex items-center gap-3">
+                                                            <div class="avatar">
+                                                                <div class="mask mask-squircle w-12 h-12">
+                                                                    <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="font-bold">Hart Hagerty</div>
+                                                                <div class="text-sm opacity-50">United States</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        Zemlak, Daniel and Leannon
+                                                        <br/>
+                                                        <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                                    </td>
+                                                    <td>Purple</td>
+                                                    <th>
+                                                        <button class="btn btn-ghost btn-xs">details</button>
+                                                    </th>
+                                                </tr>
+                                                <!-- row 2 -->
+                                                <tr>
+                                                    <th>
+                                                        <label>
+                                                            <input type="checkbox" class="checkbox" />
+                                                        </label>
+                                                    </th>
+                                                    <td>
+                                                        <div class="flex items-center gap-3">
+                                                            <div class="avatar">
+                                                                <div class="mask mask-squircle w-12 h-12">
+                                                                    <img src="/tailwind-css-component-profile-3@56w.png" alt="Avatar Tailwind CSS Component" />
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="font-bold">Brice Swyre</div>
+                                                                <div class="text-sm opacity-50">China</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        Carroll Group
+                                                        <br/>
+                                                        <span class="badge badge-ghost badge-sm">Tax Accountant</span>
+                                                    </td>
+                                                    <td>Red</td>
+                                                    <th>
+                                                        <button class="btn btn-ghost btn-xs">details</button>
+                                                    </th>
+                                                </tr>
+                                                <!-- row 3 -->
+                                                <tr>
+                                                    <th>
+                                                        <label>
+                                                            <input type="checkbox" class="checkbox" />
+                                                        </label>
+                                                    </th>
+                                                    <td>
+                                                        <div class="flex items-center gap-3">
+                                                            <div class="avatar">
+                                                                <div class="mask mask-squircle w-12 h-12">
+                                                                    <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="font-bold">Marjy Ferencz</div>
+                                                                <div class="text-sm opacity-50">Russia</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        Rowe-Schoen
+                                                        <br/>
+                                                        <span class="badge badge-ghost badge-sm">Office Assistant I</span>
+                                                    </td>
+                                                    <td>Crimson</td>
+                                                    <th>
+                                                        <button class="btn btn-ghost btn-xs">details</button>
+                                                    </th>
+                                                </tr>
+                                                <!-- row 4 -->
+                                                <tr>
+                                                    <th>
+                                                        <label>
+                                                            <input type="checkbox" class="checkbox" />
+                                                        </label>
+                                                    </th>
+                                                    <td>
+                                                        <div class="flex items-center gap-3">
+                                                            <div class="avatar">
+                                                                <div class="mask mask-squircle w-12 h-12">
+                                                                    <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="font-bold">Yancy Tear</div>
+                                                                <div class="text-sm opacity-50">Brazil</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        Wyman-Ledner
+                                                        <br/>
+                                                        <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
+                                                    </td>
+                                                    <td>Indigo</td>
+                                                    <th>
+                                                        <button class="btn btn-ghost btn-xs">details</button>
+                                                    </th>
+                                                </tr>
+                                                </tbody>
+                                                <!-- foot -->
+                                                <tfoot>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Name</th>
+                                                    <th>Job</th>
+                                                    <th>Favorite Color</th>
+                                                    <th></th>
+                                                </tr>
+                                                </tfoot>
+
+                                            </table>
                                         </div>
-                                    </td>
-                                    <td class="px-4 py-3"><%=rs.getString("Category")%></td>
-                                    <td class="px-4 py-3"><%=rs.getString("Brand")%></td>
-                                    <td class="px-4 py-3"><%=rs.getString("Description")%></td>
-                                    <td class="px-4 py-3"><%=rs.getString("Price")%></td>
-                                    <td class="px-4 py-3 flex items-center justify-end">
-                                        <form style="padding: 5px">
-                                            <button class="btn btn-success" type="button"
-                                                    onclick="showEditModal('<%=rs.getString("ID")%>', '<%=rs.getString("ProductName")%>', '<%=rs.getString("Brand")%>', '<%=rs.getString("Price")%>', '<%=rs.getString("Category")%>', '<%=rs.getString("Description")%>', '<%=rs.getString("Image")%>')"
-                                            >Edit</button>
-                                        </form>
-                                        <form action="hello-servlet?method=delete&ID=<%=rs.getString("ID")%>" method="post" style="padding: 5px">
-                                            <button class="btn btn-error" type="submit">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <%
+                                    </div>
+
+<%--                                    <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Tab 3" />--%>
+<%--                                    <div role="tabpanel" class="tab-content p-10">Tab content 3</div>--%>
+                                </div>
+                            </div>
 
 
-
-
-
-
-                                        }
-
-
-
-//
-//                                        System.out.println("MySQL JDBC Driver is in the classpath.");
-//
-//                                    } catch (ClassNotFoundException | SQLException e) {
-//                                        System.out.println("MySQL JDBC Driver is not in the classpath.");
-//                                        throw new RuntimeException(e);
-//                                    }
-
-                                %>
-
-                                </tbody>
-                            </table>
                         </div>
+
+
 
                     </div>
                 </div>

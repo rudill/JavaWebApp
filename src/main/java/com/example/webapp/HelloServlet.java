@@ -2,7 +2,7 @@ package com.example.webapp;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.SQLException;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -30,22 +30,25 @@ public class HelloServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        getSetData getData = new getSetData();
+
         try {
-            String Name = request.getParameter("name");
-            String brand = request.getParameter("brand");
-            String price = request.getParameter("price");
-            String category = request.getParameter("category");
-            String description = request.getParameter("description");
+                getData.getProductName(request.getParameter("name"));
+                getData.getBrand(request.getParameter("brand"));
+                getData.getPrice(request.getParameter("price"));
+                getData.getCategory(request.getParameter("category"));
+                getData.getDescription(request.getParameter("description"));
 
 
             Part filePart = request.getPart("image");
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            getData.getFileName(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());
             InputStream fileContent = filePart.getInputStream();
             String uploadDirectory = "D:\\javaWebApps\\webApp\\src\\main\\webapp\\images\\";
 
-            Files.copy(fileContent, Paths.get(uploadDirectory + fileName));
+            Files.copy(fileContent, Paths.get(uploadDirectory + getData.setFileName()), StandardCopyOption.REPLACE_EXISTING);
 
-            dbConnection.insertToDb(Name, brand, price, category, description, fileName);
+
+            dbConnection.insertToDb(getData.setProductName(), getData.setBrand(), getData.setPrice(), getData.setCategory(), getData.setDescription(), getData.setFileName());
 
             response.sendRedirect("index.jsp");
 
@@ -78,21 +81,22 @@ public class HelloServlet extends HttpServlet {
             }
             else if("update".equals(method)){
 
+                getSetData updateData = new getSetData();
+
                 Part filePart = request.getPart("upImage");
-                String upFileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                updateData.getFileName(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());
                 InputStream fileContent = filePart.getInputStream();
                 String uploadDirectory = "D:\\javaWebApps\\webApp\\src\\main\\webapp\\images\\";
-                Files.copy(fileContent, Paths.get(uploadDirectory + upFileName));
+                Files.copy(fileContent, Paths.get(uploadDirectory + updateData.setFileName()), StandardCopyOption.REPLACE_EXISTING);
 
 
-                String ID = request.getParameter("ID");
-                String Name = request.getParameter("name");
-                String brand = request.getParameter("brand");
-                String price = request.getParameter("price");
-                String category = request.getParameter("category");
-                String description = request.getParameter("description");
-                //String upFileName = request.getParameter("image");
-                dbConnection.updateToDb(ID, Name, brand, price, category, description, upFileName);
+                updateData.getID(request.getParameter("ID"));
+                updateData.getProductName(request.getParameter("name"));
+                updateData.getBrand(request.getParameter("brand"));
+                updateData.getPrice(request.getParameter("price"));
+                updateData.getCategory(request.getParameter("category"));
+                updateData.getDescription(request.getParameter("description"));
+                dbConnection.updateToDb(updateData.setID(), updateData.setProductName(), updateData.setBrand(), updateData.setPrice(), updateData.setCategory(), updateData.setDescription(), updateData.setFileName());
                 response.sendRedirect("index.jsp");
             }
 
