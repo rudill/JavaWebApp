@@ -239,10 +239,10 @@
 
 
 
-                        <div class="flex flex-col w-full">
-                            <div class="grid hover:bg-base-300/100 card bg-base-300 rounded-box place-items-center">
+<%--                        <div class="flex flex-col w-full">--%>
+<%--                            <div class="grid hover:bg-base-300/100 card bg-base-300 rounded-box place-items-center">--%>
                                 <div role="tablist" class="tabs tabs-bordered">
-                                    <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Products" checked  />
+                                    <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Products" checked    />
                                     <div role="tabpanel" class="tab-content p-10">
 
                                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
@@ -335,153 +335,105 @@
                                     <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Users" />
                                     <div role="tabpanel" class="tab-content p-10">
                                         <div class="overflow-x-auto">
-                                            <table class="table">
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
                                                 <!-- head -->
-                                                <thead>
+                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                                 <tr>
-                                                    <th>
-                                                        <label>
-                                                            <input type="checkbox" class="checkbox" />
-                                                        </label>
-                                                    </th>
-                                                    <th>Name</th>
-                                                    <th>Job</th>
-                                                    <th>Favorite Color</th>
-                                                    <th></th>
+
+                                                    <th scope="col" class="px-4 py-3">User Name</th>
+                                                    <th scope="col" class="px-4 py-3">Email</th>
+                                                    <th scope="col" class="px-4 py-3">First Name</th>
+                                                    <th scope="col" class="px-4 py-3">Last Name</th>
+                                                    <th scope="col" class="px-4 py-3"></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <!-- row 1 -->
+                                                 <%
+
+                                                     String query2 = "SELECT * FROM users";
+
+                                                        try {
+                                                            Class.forName(driver);
+                                                        } catch (ClassNotFoundException e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+
+                                                        try {
+                                                            con = DriverManager.getConnection(url,"root","");
+                                                        } catch (SQLException e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+
+                                                        try {
+                                                            st = con.createStatement();
+                                                        } catch (SQLException e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+
+                                                        try {
+                                                            rs = st.executeQuery(query2);
+                                                        } catch (SQLException e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+
+                                                        while (true) {
+                                                            try {
+                                                                if (!rs.next()) break;
+                                                            } catch (SQLException e) {
+                                                                throw new RuntimeException(e);
+                                                            }
+
+                                                     %>
                                                 <tr>
-                                                    <th>
-                                                        <label>
-                                                            <input type="checkbox" class="checkbox" />
-                                                        </label>
-                                                    </th>
-                                                    <td>
-                                                        <div class="flex items-center gap-3">
-                                                            <div class="avatar">
-                                                                <div class="mask mask-squircle w-12 h-12">
-                                                                    <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <div class="font-bold">Hart Hagerty</div>
-                                                                <div class="text-sm opacity-50">United States</div>
-                                                            </div>
-                                                        </div>
+
+                                                    <td class="px-4 py-3" style="font-weight: bold">
+
+
+
+                                                        <div class="badge badge-accent"> <%=rs.getString("UserName")%></div>
+
+
                                                     </td>
-                                                    <td>
-                                                        Zemlak, Daniel and Leannon
-                                                        <br/>
-                                                        <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+
+                                                    <td class="px-4 py-3">
+
+                                                            <%=rs.getString("Email")%>
                                                     </td>
-                                                    <td>Purple</td>
-                                                    <th>
-                                                        <button class="btn btn-ghost btn-xs">details</button>
-                                                    </th>
+                                                    <td class="px-4 py-3">
+
+                                                            <%=rs.getString("FirstName")%>
+
+                                                    </td>
+
+
+                                                    <td class="px-4 py-3">
+
+                                                            <%=rs.getString("LastName")%>
+
+                                                    </td>
+
+                                                    <td class="px-4 py-3">
+
+                                                        <form action="user-servlet?method=delete&UID=<%=rs.getString("UID")%>" method="post">
+                                                            <button class="btn btn-error btn-xs">Remove</button>
+                                                        </form>
+
+
+                                                    </td>
                                                 </tr>
+
+                                                 <%
+                                                    }
+
+                                                 %>
                                                 <!-- row 2 -->
-                                                <tr>
-                                                    <th>
-                                                        <label>
-                                                            <input type="checkbox" class="checkbox" />
-                                                        </label>
-                                                    </th>
-                                                    <td>
-                                                        <div class="flex items-center gap-3">
-                                                            <div class="avatar">
-                                                                <div class="mask mask-squircle w-12 h-12">
-                                                                    <img src="/tailwind-css-component-profile-3@56w.png" alt="Avatar Tailwind CSS Component" />
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <div class="font-bold">Brice Swyre</div>
-                                                                <div class="text-sm opacity-50">China</div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        Carroll Group
-                                                        <br/>
-                                                        <span class="badge badge-ghost badge-sm">Tax Accountant</span>
-                                                    </td>
-                                                    <td>Red</td>
-                                                    <th>
-                                                        <button class="btn btn-ghost btn-xs">details</button>
-                                                    </th>
-                                                </tr>
+
                                                 <!-- row 3 -->
-                                                <tr>
-                                                    <th>
-                                                        <label>
-                                                            <input type="checkbox" class="checkbox" />
-                                                        </label>
-                                                    </th>
-                                                    <td>
-                                                        <div class="flex items-center gap-3">
-                                                            <div class="avatar">
-                                                                <div class="mask mask-squircle w-12 h-12">
-                                                                    <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <div class="font-bold">Marjy Ferencz</div>
-                                                                <div class="text-sm opacity-50">Russia</div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        Rowe-Schoen
-                                                        <br/>
-                                                        <span class="badge badge-ghost badge-sm">Office Assistant I</span>
-                                                    </td>
-                                                    <td>Crimson</td>
-                                                    <th>
-                                                        <button class="btn btn-ghost btn-xs">details</button>
-                                                    </th>
-                                                </tr>
+
                                                 <!-- row 4 -->
-                                                <tr>
-                                                    <th>
-                                                        <label>
-                                                            <input type="checkbox" class="checkbox" />
-                                                        </label>
-                                                    </th>
-                                                    <td>
-                                                        <div class="flex items-center gap-3">
-                                                            <div class="avatar">
-                                                                <div class="mask mask-squircle w-12 h-12">
-                                                                    <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <div class="font-bold">Yancy Tear</div>
-                                                                <div class="text-sm opacity-50">Brazil</div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        Wyman-Ledner
-                                                        <br/>
-                                                        <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-                                                    </td>
-                                                    <td>Indigo</td>
-                                                    <th>
-                                                        <button class="btn btn-ghost btn-xs">details</button>
-                                                    </th>
-                                                </tr>
+
                                                 </tbody>
                                                 <!-- foot -->
-                                                <tfoot>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Name</th>
-                                                    <th>Job</th>
-                                                    <th>Favorite Color</th>
-                                                    <th></th>
-                                                </tr>
-                                                </tfoot>
 
                                             </table>
                                         </div>
@@ -490,10 +442,10 @@
 <%--                                    <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Tab 3" />--%>
 <%--                                    <div role="tabpanel" class="tab-content p-10">Tab content 3</div>--%>
                                 </div>
-                            </div>
+<%--                            </div>--%>
 
 
-                        </div>
+
 
 
 

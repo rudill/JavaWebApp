@@ -3,23 +3,23 @@ package com.example.webapp;
 public class setData {
 
     public void setData(String productName, String brand, String price, String category, String description, String fileName) {
-        getSetData data = new getSetData();
-        data.getProductName(productName);
-        data.getBrand(brand);
-        data.getPrice(price);
-        data.getCategory(category);
-        data.getDescription(description);
-        data.getFileName(fileName);
+        productData data = new productData();
+        data.setProductName(productName);
+        data.setBrand(brand);
+        data.setPrice(price);
+        data.setCategory(category);
+        data.setDescription(description);
+        data.setFileName(fileName);
     }
 
     public void getData() {
-        getSetData data = new getSetData();
-        System.out.println("Product Name: " + data.setProductName());
-        System.out.println("Brand: " + data.setBrand());
-        System.out.println("Price: " + data.setPrice());
-        System.out.println("Category: " + data.setCategory());
-        System.out.println("Description: " + data.setDescription());
-        System.out.println("File Name: " + data.setFileName());
+        productData data = new productData();
+        System.out.println("Product Name: " + data.getProductName());
+        System.out.println("Brand: " + data.getBrand());
+        System.out.println("Price: " + data.getPrice());
+        System.out.println("Category: " + data.getCategory());
+        System.out.println("Description: " + data.getDescription());
+        System.out.println("File Name: " + data.getFileName());
     }
 
 }

@@ -11,7 +11,7 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.Part;
 import javax.servlet.annotation.MultipartConfig;
 
-import static com.example.webapp.dbConnection.fetchAllFromDb;
+import static com.example.webapp.productTableConnection.fetchAllFromDb;
 
 @MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
         maxFileSize=1024*1024*10,      // 10MB
@@ -30,25 +30,25 @@ public class HelloServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        getSetData getData = new getSetData();
+        productData getData = new productData();
 
         try {
-                getData.getProductName(request.getParameter("name"));
-                getData.getBrand(request.getParameter("brand"));
-                getData.getPrice(request.getParameter("price"));
-                getData.getCategory(request.getParameter("category"));
-                getData.getDescription(request.getParameter("description"));
+                getData.setProductName(request.getParameter("name"));
+                getData.setBrand(request.getParameter("brand"));
+                getData.setPrice(request.getParameter("price"));
+                getData.setCategory(request.getParameter("category"));
+                getData.setDescription(request.getParameter("description"));
 
 
             Part filePart = request.getPart("image");
-            getData.getFileName(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());
+            getData.setFileName(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());
             InputStream fileContent = filePart.getInputStream();
             String uploadDirectory = "D:\\javaWebApps\\webApp\\src\\main\\webapp\\images\\";
 
-            Files.copy(fileContent, Paths.get(uploadDirectory + getData.setFileName()), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(fileContent, Paths.get(uploadDirectory + getData.getFileName()), StandardCopyOption.REPLACE_EXISTING);
 
 
-            dbConnection.insertToDb(getData.setProductName(), getData.setBrand(), getData.setPrice(), getData.setCategory(), getData.setDescription(), getData.setFileName());
+            productTableConnection.insertToDb(getData.getProductName(), getData.getBrand(), getData.getPrice(), getData.getCategory(), getData.getDescription(), getData.getFileName());
 
             response.sendRedirect("index.jsp");
 
@@ -76,27 +76,27 @@ public class HelloServlet extends HttpServlet {
             String method = request.getParameter("method");
             if("delete".equals(method)){
                 String ID = request.getParameter("ID");
-                dbConnection.deleteFromDb(ID);
+                productTableConnection.deleteFromDb(ID);
                 response.sendRedirect("index.jsp");
             }
             else if("update".equals(method)){
 
-                getSetData updateData = new getSetData();
+                productData updateData = new productData();
 
                 Part filePart = request.getPart("upImage");
-                updateData.getFileName(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());
+                updateData.setFileName(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());
                 InputStream fileContent = filePart.getInputStream();
                 String uploadDirectory = "D:\\javaWebApps\\webApp\\src\\main\\webapp\\images\\";
-                Files.copy(fileContent, Paths.get(uploadDirectory + updateData.setFileName()), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(fileContent, Paths.get(uploadDirectory + updateData.getFileName()), StandardCopyOption.REPLACE_EXISTING);
 
 
-                updateData.getID(request.getParameter("ID"));
-                updateData.getProductName(request.getParameter("name"));
-                updateData.getBrand(request.getParameter("brand"));
-                updateData.getPrice(request.getParameter("price"));
-                updateData.getCategory(request.getParameter("category"));
-                updateData.getDescription(request.getParameter("description"));
-                dbConnection.updateToDb(updateData.setID(), updateData.setProductName(), updateData.setBrand(), updateData.setPrice(), updateData.setCategory(), updateData.setDescription(), updateData.setFileName());
+                updateData.setID(request.getParameter("ID"));
+                updateData.setProductName(request.getParameter("name"));
+                updateData.setBrand(request.getParameter("brand"));
+                updateData.setPrice(request.getParameter("price"));
+                updateData.setCategory(request.getParameter("category"));
+                updateData.setDescription(request.getParameter("description"));
+                productTableConnection.updateToDb(updateData.getID(), updateData.getProductName(), updateData.getBrand(), updateData.getPrice(), updateData.getCategory(), updateData.getDescription(), updateData.getFileName());
                 response.sendRedirect("index.jsp");
             }
 

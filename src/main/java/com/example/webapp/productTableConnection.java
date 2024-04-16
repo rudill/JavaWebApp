@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class dbConnection {
+public class productTableConnection {
     public static void insertToDb(String productName, String brand, String price, String category, String description, String fileName) {
         String driver = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/webapp";

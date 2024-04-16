@@ -1,14 +1,14 @@
 package com.example.webapp;
 
-public class getSetData {
+public class productData {
 
     private String productName;
 
-    public void getProductName(String productName) {
+    public void setProductName(String productName) {
        this.productName = productName;
     }
 
-    public String setProductName() {
+    public String getProductName() {
         return productName;
     }
 
@@ -17,11 +17,11 @@ public class getSetData {
 
     private String brand;
 
-    public void getBrand(String brand){
+    public void setBrand(String brand){
         this.brand = brand;
     }
 
-    public String setBrand(){
+    public String getBrand(){
         return brand;
     }
 
@@ -30,11 +30,11 @@ public class getSetData {
 
     private String price;
 
-    public void getPrice(String price){
+    public void setPrice(String price){
         this.price = price;
     }
 
-    public String setPrice(){
+    public String getPrice(){
         return price;
     }
 
@@ -44,12 +44,12 @@ public class getSetData {
 
     private String category;
 
-    public void getCategory(String category){
+    public void setCategory(String category){
         this.category = category;
     }
 
 
-    public String setCategory(){
+    public String getCategory(){
         return category;
     }
 
@@ -59,11 +59,11 @@ public class getSetData {
 
     private String description;
 
-    public void getDescription(String description){
+    public void setDescription(String description){
         this.description = description;
     }
 
-    public String setDescription(){
+    public String getDescription(){
         return description;
     }
 
@@ -73,11 +73,11 @@ public class getSetData {
 
     private String fileName;
 
-    public void getFileName(String fileName){
+    public void setFileName(String fileName){
         this.fileName = fileName;
     }
 
-    public String setFileName(){
+    public String getFileName(){
         return fileName;
     }
 
@@ -85,11 +85,11 @@ public class getSetData {
 
     private String ID;
 
-    public void getID(String ID){
+    public void setID(String ID){
         this.ID = ID;
     }
 
-    public String setID(){
+    public String getID(){
         return ID;
     }
 
