@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <jsp:include page="Nav.jsp" />
+        <div>
+            <h1>ADD Products</h1>
+            <form action="ProductServlet" method="POST" enctype="multipart/form-data">
+            <table border="2" width="20" cellpadding="10">
+                <thead>
+                    
+                    <tr>
+                        <th>ID</th>
+                        <th>Product Name</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="number" name="pid">  
+                        </td>
+                        <td>
+                            <input type="text" name="pname">
+                        </td>
+                        <td>
+                            <input type="text" name="pBrand">
+                        </td>
+                        
+                        <td>
+                            <input type="number" name="pPrice">
+                        </td>
+                        <td>
+                            <input type="text" name="pCategory">
+                        </td>
+                        <td>
+                            <input type="text" name="pDescription">
+                        </td>
+                        
+                        <td>
+                            <input type="file" name="pImage">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Enter">
+                        </td>
+                        <td>
+                            <input type="reset" value="Clear">
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+            
+        </div>
+        <a href="Products.jsp">Product</a>
+        <a href="Cart.jsp">Cart</a>
+       
+    </body>
+</html>
