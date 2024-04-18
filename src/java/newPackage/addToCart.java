@@ -85,7 +85,6 @@ public class addToCart extends HttpServlet {
     }
     }
 
-// Add the product to the list
          cartList.add(cart);
          
 
@@ -97,16 +96,19 @@ public class addToCart extends HttpServlet {
     }
     
      private void Subtotal(List<Cart> cartList, HttpSession session) {
-        // Recalculate subtotal
-        double subtotal = 0;
-        for (Cart cart : cartList) {
-            subtotal += cart.getPrice() * cart.getQuantity();
-        }
-   
-    
-    // Update session with formatted subtotal
-    session.setAttribute("subtotal",subtotal);
+    // Check if cart list is empty or null
+    if (cartList == null || cartList.isEmpty()) {
+      
+        session.setAttribute("subtotal", 0.0);
+        return;
     }
+    double subtotal = 0;
+    for (Cart cart : cartList) {
+        subtotal += cart.getPrice() * cart.getQuantity();
+    }
+
+    session.setAttribute("subtotal", subtotal);
+}
         
  
       
