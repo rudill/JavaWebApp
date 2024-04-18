@@ -31,7 +31,7 @@ public class removeCart extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+   protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
        int index = Integer.parseInt(request.getParameter("index"));
@@ -43,14 +43,28 @@ public class removeCart extends HttpServlet {
         // Remove the item from the list
         if ( cartList != null && index >= 0 && index < cartList.size()) {
             cartList.remove(index);
-            // Update the session attribute
+            
             session.setAttribute("cartList", cartList);
+            Subtotal(cartList, session);
         }
-
-        // Redirect back to the original page
-        
+       
         response.sendRedirect("Cart.jsp");
     }
+    private void Subtotal(List<Cart> cartList, HttpSession session) {
+    
+    if (cartList == null || cartList.isEmpty()) {
+        
+        session.setAttribute("subtotal", 0.0);
+        return;
+    }
+
+        double subtotal = 0;
+        for (Cart cart : cartList) {
+            subtotal += cart.getPrice() * cart.getQuantity();
+        }
+        session.setAttribute("subtotal", subtotal);
+    }
+
     
 
 
