@@ -49,10 +49,15 @@ public final class contact_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Contact Page</title>\n");
+      out.write("        <style>\n");
+      out.write("            #main-title{\n");
+      out.write("                color:red;\n");
+      out.write("            }   \n");
+      out.write("        </style>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <div> \n");
-      out.write("            <h1> Contact Us</h1>\n");
+      out.write("            <h1 id=\"main-title\"> Contact Us</h1>\n");
       out.write("            <p>Welcome to WebApp contact us section. If you need any help please reach out to us. Our 24/7 suport team is here to answer your all the questions.</p>\n");
       out.write("            <div> \n");
       out.write("            <p>Phone Number : (+94) 764648419</p>\n");
