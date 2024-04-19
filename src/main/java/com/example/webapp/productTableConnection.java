@@ -21,10 +21,10 @@ public class productTableConnection {
             Connection con = DriverManager.getConnection(url,"root","");
             Statement st = con.createStatement();
             st.executeUpdate(query);
-            System.out.println("MySQL JDBC Driver is in the classpath.");
+            System.out.println("MySQL Operation Success !");
 
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("MySQL JDBC Driver is not in the classpath.");
+            System.out.println("MySQL Operation Failed !");
             throw new RuntimeException(e);
         }
     }
@@ -55,10 +55,10 @@ public class productTableConnection {
                 resultList.add(row);
             }
 
-            System.out.println("MySQL JDBC Driver is in the classpath.");
+            System.out.println("MySQL Operation Success !");
 
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("MySQL JDBC Driver is not in the classpath.");
+            System.out.println("MySQL Operation Failed !");
             throw new RuntimeException(e);
         }
 
@@ -83,10 +83,10 @@ public static void updateToDb(String ID, String productName, String brand, Strin
         st.setString(7, ID);
 
         st.executeUpdate();
-        System.out.println("MySQL JDBC Driver is in the classpath.");
+        System.out.println("MySQL Operation Success !");
 
     }  catch (ClassNotFoundException | SQLException e) {
-        System.out.println("MySQL JDBC Driver is not in the classpath.");
+        System.out.println("MySQL Operation Failed !");
         throw new RuntimeException(e);
     }
 }
