@@ -84,14 +84,9 @@
                             
                          
                             <div class="form-group">
-                                <div class="col-md-6 col-xs-12">
-                                    <strong>First Name:</strong>
-                                    <input type="text" name="fname" class="form-control" value="" />
-                                </div>
-                                <div class="span1"></div>
-                                <div class="col-md-6 col-xs-12">
-                                    <strong>Last Name:</strong>
-                                    <input type="text" name="lname" class="form-control" value="" />
+                                <div class="col-md-12">
+                                    <strong> Name:</strong>
+                                    <input type="text" name="name" class="form-control" value="" />
                                 </div>
                             </div>
                             <div class="form-group">
