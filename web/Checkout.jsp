@@ -122,6 +122,12 @@
                                 <div class="col-md-12"><strong>Email Address:</strong></div>
                                 <div class="col-md-12"><input type="text" name="email" class="form-control" value="" /></div>
                             </div>
+                                  <input type="hidden" name="date" value="<%= new java.util.Date() %>">
+                            <% 
+                                  int userid = (Integer) session.getAttribute("auth");
+                            %>
+
+                            <input type="hidden" name="userid" value="<%= userid %>">
                         </div>
                     </div>
                     <div class="form-group">
