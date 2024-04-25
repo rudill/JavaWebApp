@@ -1,4 +1,3 @@
-
 <%@ page import="java.sql.*" %><%--
   Created by IntelliJ IDEA.
   User: Ruvinda Dilshan
@@ -315,10 +314,10 @@
                                                     <td class="px-4 py-3 flex items-center justify-end">
                                                         <form style="padding: 5px">
                                                             <button class="btn btn-success" type="button"
-                                                                    onclick="showEditModal('<%=rs.getString("ID")%>', '<%=rs.getString("ProductName")%>', '<%=rs.getString("Brand")%>', '<%=rs.getString("Price")%>', '<%=rs.getString("Category")%>', '<%=rs.getString("Description")%>', '<%=rs.getString("Image")%>')"
+                                                                    onclick="showEditModal('<%=rs.getString("productID")%>', '<%=rs.getString("ProductName")%>', '<%=rs.getString("Brand")%>', '<%=rs.getString("Price")%>', '<%=rs.getString("Category")%>', '<%=rs.getString("Description")%>', '<%=rs.getString("Image")%>')"
                                                             >Edit</button>
                                                         </form>
-                                                        <form action="hello-servlet?method=delete&ID=<%=rs.getString("ID")%>" method="post" style="padding: 5px">
+                                                        <form action="hello-servlet?method=delete&ID=<%=rs.getString("productID")%>" method="post" style="padding: 5px">
                                                             <button class="btn btn-error" type="submit" onclick="showDeleteAlert()">Delete</button>
                                                         </form>
                                                     </td>
@@ -439,8 +438,155 @@
                                         </div>
                                     </div>
 
-<%--                                    <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Tab 3" />--%>
-<%--                                    <div role="tabpanel" class="tab-content p-10">Tab content 3</div>--%>
+                                    <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Orders" />
+                                    <div role="tabpanel" class="tab-content p-10">
+
+
+
+                                        <div class="overflow-x-auto">
+                                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+                                                <!-- head -->
+                                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                <tr>
+
+                                                    <th scope="col" class="px-4 py-3">User Name</th>
+                                                    <th scope="col" class="px-4 py-3">Product</th>
+                                                    <th scope="col" class="px-4 py-3">Quantity</th>
+                                                    <th scope="col" class="px-4 py-3">Total Price</th>
+                                                    <th scope="col" class="px-4 py-3"></th>
+                                                </tr>
+                                                </thead>
+
+
+
+                                                <tbody>
+
+                                                <%
+
+                                                    String orderQuery = "SELECT orders.orderID, users.UserName, product.ProductName, product.Price , orders.Quantity FROM orders INNER JOIN users ON orders.UID = users.UID INNER JOIN product ON orders.productID = product.productID";
+                                                    try {
+                                                        Class.forName(driver);
+                                                    } catch (ClassNotFoundException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                    try {
+                                                        con = DriverManager.getConnection(url,"root","");
+                                                    }
+                                                    catch (SQLException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                    try {
+                                                        st = con.createStatement();
+                                                    } catch (SQLException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                    try {
+                                                        rs = st.executeQuery(orderQuery);
+                                                    } catch (SQLException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+
+                                                    while (true) {
+                                                        try {
+                                                            if (!rs.next()) break;
+                                                        } catch (SQLException e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+
+
+                                                %>
+
+                                                <tr>
+
+                                                    <td class="px-4 py-3" style="font-weight: bold">
+
+
+
+                                                        <div class="badge badge-accent">
+
+                                                                <%=rs.getString("UserName")%>
+                                                        </div>
+
+
+                                                    </td>
+
+                                                    <td class="px-4 py-3">
+
+
+                                                        <%=rs.getString("ProductName")%>
+
+
+                                                    </td>
+                                                    <td class="px-4 py-3">
+
+
+                                                        <%=rs.getString("Quantity")%>
+
+
+
+                                                    </td>
+
+
+                                                    <td class="px-4 py-3">
+
+
+                                                        <%
+                                                            int total;
+                                                            try {
+
+                                                                int price = 0;
+                                                                try {
+                                                                    price = Integer.parseInt(rs.getString("Price"));
+                                                                } catch (SQLException e) {
+                                                                    throw new RuntimeException(e);
+                                                                }
+                                                                int quantity = 0;
+                                                                try {
+                                                                    quantity = Integer.parseInt(rs.getString("Quantity"));
+                                                                } catch (SQLException e) {
+                                                                    throw new RuntimeException(e);
+                                                                }
+                                                                total = price * quantity;
+
+
+                                                            } catch (NumberFormatException e) {
+                                                                throw new RuntimeException(e);
+                                                            }
+
+                                                        %>
+
+                                                        <%=total%>
+
+
+                                                    </td>
+
+                                                    <td class="px-4 py-3">
+
+                                                            <button class="btn btn-error btn-xs">Remove</button>
+
+
+
+                                                    </td>
+                                                </tr>
+
+                                                <%
+                                                    }
+                                                %>
+
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+
                                 </div>
 <%--                            </div>--%>
 

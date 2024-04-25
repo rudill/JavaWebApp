@@ -68,7 +68,7 @@ public class productTableConnection {
 public static void updateToDb(String ID, String productName, String brand, String price, String category, String description, String fileName) {
     String driver = "com.mysql.cj.jdbc.Driver";
     String url = "jdbc:mysql://localhost:3306/webapp";
-    String query = "UPDATE product SET ProductName = ?, Brand = ?, Price = ?, Category = ?, Description = ?, Image = ? WHERE ID = ?";
+    String query = "UPDATE product SET ProductName = ?, Brand = ?, Price = ?, Category = ?, Description = ?, Image = ? WHERE productID = ?";
 
     try {
         Class.forName(driver);
@@ -94,7 +94,7 @@ public static void updateToDb(String ID, String productName, String brand, Strin
     public static void deleteFromDb(String ID) {
         String driver = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/webapp";
-        String query = "DELETE FROM product WHERE ID = '"+ ID +"'";
+        String query = "DELETE FROM product WHERE productID = '"+ ID +"'";
 
         dbDriver(driver, url, query);
     }
