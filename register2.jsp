@@ -29,8 +29,8 @@
                         <a href="login2.jsp">Login</a><a href="register2.jsp" class="active">Register</a>
                     </div>
                     <form method="post" action="ecomservlet">
-                        <input class="form-control" type="text" name="firstname" placeholder="User Name" required>
-                        <input class="form-control" type="text" name="fname" placeholder="First Name" required>
+                        <input class="form-control" type="text" name="username" placeholder="User Name" required>
+                        <input class="form-control" type="text" name="firstname" placeholder="First Name" required>
                         <input class="form-control" type="text" name="lastname" placeholder="Last Name" required>
                         <input class="form-control" type="text" name="email" placeholder="E-Mail" required>
                         <input class="form-control" type="password" name="password" placeholder="Password" required>
@@ -43,9 +43,5 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
