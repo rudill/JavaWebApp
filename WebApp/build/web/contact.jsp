@@ -11,107 +11,181 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Contact Page</title>
         <style>
-            #main-title{
-                color:#222831;
-                font-family: arial;
-                text-align: center;
-                font-size: 40px;
-                padding-top: 120px;
-            }   
-            
-            #sub-title{
-                text-align: center;
-                color: #73777B;
-                font-family: arial;
-                font-weight: 500;
-            }
-            
-            #section-one{
-                padding-top: 100px;
-                padding-left: 200px;
-                padding-right: 200px;
-            }
-            
-            #phone{
-                color: black;
-                font-family: arial;
-                size: 18px;
-                color: white;
-                padding-left: 15px;
-            }
-            
-            #mail{
-               color: black;
-                font-family: arial;
-                size: 18px; 
-                color: white;
-                padding-left: 15px;
-            }
-            
-            #address{
-                color: black;
-                font-family: arial;
-                size: 18px;
-                color: white;
-                padding-left: 15px;
-            }
-            
-            #form-section{
-                margin-left: 450px;
-                padding-top: -200px
-            }
-            #con-info{
-                font-family: arial;
-                padding-bottom: 25px;
-                color: white;
-                padding-left: 15px;
-            }
-            
-            #contact-section{
-                background-color: #135D66;
-                padding-top: 50px;
-                padding-bottom: 50px;
-                padding-left: 15px;
-                padding-right: 15px;
-                border-radius: 10px;
-            }
-            
-            #form-section{
-                background-color: white;
-            }
-            #input{
-                padding-top: 5px;
-                padding-bottom: 5px;
-                padding-left: 30px;
-                padding-right: 30px;
-            }
+          body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.contact-us {
+  background-color: #fff;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.contact-us h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.contact-us p {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.contact-info-form {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 0;
+}
+
+.contact-info-form .container {
+  width: 50%;
+  margin: 0 auto; /* Center the content within the container */
+}
+
+.contact-info {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.contact-info h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.contact-info p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.contact-info li {
+  margin-bottom: 10px;
+}
+
+.contact-info li i {
+  margin-right: 10px;
+  color: #333;
+  font-size: 18px;
+}
+
+.contact-form {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.contact-form h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.contact-form button:hover {
+  background-color: #222;
+}
+
+
         </style>
         
-        <script src="https://kit.fontawesome.com/your_kit_id.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/your_fontawesome_kit_id.js" crossorigin="anonymous"></script>
+
     </head>
     <body>
         
-        <h1 id="main-title"> Get In Touch</h1>
-            <p id="sub-title">Welcome to WebApp contact us section. If you need any help please reach out to us. Our 24/7 suport team is here to answer your all the questions.</p>
-            <div id="section-one"> 
-            
-            <div id="contact-section"> 
-                <h3 id="con-info">Contact Information</h3>
-                <p id="phone">Phone Number : (+94) 764648419</p>
-                <p id="mail">Email : webapp@example.com</p>
-                <p id="address">Address : 147, pitipana Road, Kottawa, Homagama</p>
-            </div>
-          
-            <div id="form-section"> 
-                <form name="Contact Form" action="contact.jsp" method="GET" id="contact-form">
-                Fist Name :<input type="text" name="First Name " value="Ruvinda" class="input"/><br><br>
-                Last Name : <input type="text" name="Last Name " value="Dilshan" class="input"/><br><br>
-                Email : <input type="text" name="email" value="email" class="input" /><br><br>
-            
-                Message : <textarea name="text" class="text-area"> </textarea><br><br>
+     <section class="contact-us">
+    <div class="container">
+      <h1>Thanks for Connecting with Us!</h1>
+      <p>Our 24/7 support service is always here to assist you with any questions or concerns you may have.</p>
+    </div>
+  </section>
 
-<button type ="submit">Submit</button>
-            </div>
-        </div>
+  <section class="contact-info-form">
+    <div class="container">
+      <div class="contact-info">
+        <h2>Contact Info</h2>
+        <p>Feel free to reach out to us using the information below.</p>
+        <ul>
+          <li><i class="fas fa-envelope"></i> contact@webapp.com</li>
+          <li><i class="fas fa-phone"></i> 0764648419</li>
+          <li><i class="fas fa-map-marker-alt"></i> 147, Pitipana Road, Homagama</li>
+        </ul>
+      </div>
+
+      <div class="contact-form">
+        <h2>Contact Form</h2>
+        <form action="contact.jsp" method="POST">
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://kit.fontawesome.com/your_fontawesome_kit_id.js" crossorigin="anonymous"></script>
     </body>
 </html>

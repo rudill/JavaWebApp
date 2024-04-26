@@ -5,6 +5,7 @@
         <group>
             <file>file:/F:/Java/WebApp/web/index.html</file>
             <file>file:/F:/Java/WebApp/web/contact.jsp</file>
+            <file>file:/F:/Java/WebApp/src/java/DbConnection.java</file>
             <file>file:/F:/Java/WebApp/src/java/ContactServelet.java</file>
         </group>
     </open-files>
