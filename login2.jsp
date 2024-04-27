@@ -37,16 +37,12 @@
                             <input class="form-control" type="password" name="passw" placeholder="Password" required>
                             <input type="checkbox" id="chk1" name="remember"><label for="chk1">Remember me</label>
                             <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn">Login</button> <a href="forget2.jsp">Forget password?</a>
-                            </div>
+                            <button id="submit" type="submit" class="ibtn">Login</button>
+                        </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
 </body>
 </html>
