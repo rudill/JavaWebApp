@@ -5,13 +5,11 @@
  */
 package ecompackage;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import java.sql.Driver;
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,32 +21,38 @@ public class loginclass
 {
     
    
-    public static void insertuser(String Fname,String Lastname,String emai,String psw)
-    {
-        
-        String Driver="com.mysql.jdbc.Driver"; //jdbc driver
-        String url="jdbc:mysql://localhost:3306/sky"; //db url
-        String query2 = "SELECT * FROM information WHERE username = '"+ Fname +"'";
-        String query="INSERT INTO information (username,lastname,email,password) VALUES ('"+ Fname + "','"+ Lastname +"','" + emai +"','"+ psw + "')"; //data insert query
-    
-        try {
-            Class.forName(Driver); //load driver
-            Connection conn = (Connection) DriverManager.getConnection(url,"root",""); //make connection
-            Statement st = conn.createStatement(); //create statement objct to execute query
-            st.executeQuery(query2);
-            
-           
-            
-            st.executeUpdate(query); //insert data with query executing
-            
-            conn.close(); //close connection
-        } 
+   public static boolean insertuser(String username, String firstname, String lastname, String email, String password) {
+    String driver = "com.mysql.jdbc.Driver"; 
+    String url = "jdbc:mysql://localhost:3306/store1";
+    String query = "INSERT INTO information (username, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?)";
 
-        catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(loginclass.class.getName()).log(Level.SEVERE, null, ex);
-     
-        }
+    try {
+        Class.forName(driver); // Load driver
+        Connection conn = (Connection) DriverManager.getConnection(url, "root", ""); 
+        
+        PreparedStatement pt = (PreparedStatement) conn.prepareStatement(query); 
+
+        
+        pt.setString(1, username);
+        pt.setString(2, firstname);
+        pt.setString(3, lastname);
+        pt.setString(4, email);
+        pt.setString(5, password);
+
+        
+        int rowsInserted = pt.executeUpdate();
+        
+        // Close resources
+        pt.close();
+        conn.close();
+
+        // Check if any rows were inserted
+        return rowsInserted > 0;
+    } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(loginclass.class.getName()).log(Level.SEVERE, null, ex);
+        return false; // Error occurred during insertion
     }
+}
     
         
 
