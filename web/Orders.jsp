@@ -30,7 +30,12 @@
         <header class="card-header"> My Orders  </header>
         <div class="card-body">
             
-            <%  int userid = (Integer) session.getAttribute("auth");%>
+                <%
+                   Integer userId = (Integer) session.getAttribute("auth");
+                     if (userId == null) {
+                out.println("You are not logged in. Please log in to view your orders. <a href=\"login.jsp\">LOGIN</a>");
+       } else {
+                %>
             
             <% 
             try {
@@ -83,7 +88,9 @@
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+         
             }
+}
             %>
        <a href="Products.jsp" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to Shoping</a>
         </div>
