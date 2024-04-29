@@ -1,0 +1,132 @@
+ *{
+    margin: 0px;
+    padding: 5px;
+    box-sizing: border-box;
+    
+}
+#main{
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #FFFFFF;
+}
+#row{
+    width: 100%;
+    padding: 50px 100px;
+}
+#main h1{
+    font-size: 70px;
+    color: #2429ad;
+}
+#image-section-one{
+    width: 30%;
+    float: left;
+    margin-top: 100px;
+}
+
+#image-section-one image{
+    width: 100%;
+    height: auto;
+    float: left;
+}
+#para-section-one{
+    width: 40%;
+    float: right;
+    margin-left: 50px;
+    margin-top: 100px;
+    text-align: justify;
+}
+#para-section-one p{
+    font-size: 25px;
+    margin-top: 120px;
+    line-height: 1.2;
+    margin-right: 0px;
+    text-align: justify;
+    float: right;
+}
+#image-section-two{
+    width: 50%;
+    float: right;
+    margin-top: 250px;
+    padding-right: 100px;
+    margin-left: 5px;
+}
+
+#image-section-two image{
+    width: 200%;
+    height: auto;
+    float: right;
+    margin-right: 100px;
+    margin-left: 5px;
+    padding: 50px;
+}
+#para-section-two{
+    width: 40%;
+    float: left;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+#para-section-two p{
+    font-size: 25px;
+    margin-top: 20px;
+    line-height: 1.2;
+    margin-right: 0px;
+    text-align: justify;
+    float: left;
+}
+#image-section-three{
+    width: 50%;
+    float: right;
+    margin-top: 150px;
+    padding-right: 0px;
+    margin-left: 0px;
+}
+
+#image-section-three image{
+    width: 200%;
+    height: auto;
+    float: left;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding: 0px;
+    float: right;
+}
+#para-section-three{
+    width: 40%;
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+#para-section-three p{
+    font-size: 25px;
+    margin-top: 20px;
+    line-height: 1.2;
+    margin-right: 10px;
+    text-align: justify;
+    float: left;
+}
+#business-section{
+    width: 40%;
+    margin-top: 20px;
+    align-content: center;
+    margin-top: 30px;
+}
+#business-section h2{
+    font-size: 30px;
+    color: #2a73a3;
+    align-content: center;
+    margin-top: 80px;
+}
+#desc p{
+    font-size: 20px;
+    text-align: justify;
+}
+#brand-section{
+    align-content: center;
+    padding-left: 300px;
+}
+#brand-section{
+    font-size: 20px;
+    color: #2a73a3;
+}
+

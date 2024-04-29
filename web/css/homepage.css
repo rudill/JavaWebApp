@@ -1,0 +1,132 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 27, 2024, 11:44:39 PM
+    Author     : dillo
+*/
+
+.custom-color {
+	/*background: linear-gradient(90deg, rgba(198,245,255,1) 0%, rgba(137,182,254,1) 28%, rgba(123,124,255,1) 58%, rgba(105,97,255,1) 87%, rgba(36,24,255,1) 100%);
+*/
+	background: radial-gradient(circle, rgba(112, 192, 255, 1) 0%, rgba(98, 153, 254, 1) 24%, rgba(123, 124, 255, 1) 49%, rgba(97, 124, 255, 1) 86%, rgba(36, 24, 255, 1) 100%);
+}
+
+  /* Custom CSS styles */
+        .cus-card {
+            border-radius: 50%;
+            border-color: transparent;
+            max-height: 200px;
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+        .real-price {
+            font-size: 20px !important;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 17px !important;
+            text-decoration: line-through;
+        }
+
+        .product-discount {
+            font-size: 15px !important;
+            color: #027a3e;
+        }
+        
+        .site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
