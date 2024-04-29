@@ -7,16 +7,12 @@ package ecompackage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -43,26 +39,44 @@ public class ecomservlet extends HttpServlet {
     {
         
         
-        String Username = request.getParameter("firstname");
-        String Lastname = request.getParameter("lastname");
-        String emai = request.getParameter("email");
-        String psw = request.getParameter("password");
-        
-        
-        loginclass log = new loginclass();
-        log.insertuser(Username,Lastname,emai,psw);
-        
-        response.sendRedirect("welcome.jsp");
-        
-        
-       
-                        
+    String username = request.getParameter("username");
+    String firstname = request.getParameter("firstname");
+    String lastname = request.getParameter("lastname");
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    
+    boolean isUnique = loginclass.isUsernameEmailUnique(username, email);
+    
+    if(isUnique)
+    {
+    
+    boolean insertuser = loginclass.insertuser(username, firstname, lastname, email, password);
+
+    if (insertuser) {
+        // User registration successful, redirect to login page
+        response.sendRedirect("login2.jsp");
+    } 
+    
+    else 
+    {
+        // Display error message indicating duplicate username or email
+        response.setContentType("index.jsp"); //index mean register page
+    }
+    
+    } 
+    else
+    {  
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+            out.println("Duplicate username or email. Please try again.");
+            out.println("</body></html>");
+            out.close(); // Close PrintWriter
         
     }
     
-    
+}
 
-   
-    
-
+    private boolean isUsernameEmailUnique(String username, String email) {
+       return true;
+    }
 }
