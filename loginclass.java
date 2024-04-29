@@ -53,6 +53,35 @@ public class loginclass
         return false; // Error occurred during insertion
     }
 }
+
+    public static boolean isUsernameEmailUnique(String username, String email) {
+        try {
+            String driver = "com.mysql.jdbc.Driver";
+            String url = "jdbc:mysql://localhost:3306/store1";
+            String query = "SELECT COUNT(*) FROM information WHERE username = ? OR email = ?";
+
+            Class.forName(driver);
+            Connection con = (Connection) DriverManager.getConnection(url, "root", "");
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement(query);
+
+            pst.setString(1, username);
+            pst.setString(2, email);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count == 0; // If count is 0, username and email are unique
+            }
+
+            rs.close();
+            pst.close();
+            con.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(loginclass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false; // Error occurred or unable to determine uniqueness, consider it as not unique
+    }
     
         
 
