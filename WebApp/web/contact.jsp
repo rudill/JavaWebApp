@@ -11,128 +11,135 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Contact Page</title>
         <style>
-          body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
-}
+        
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    
+      background-color: #e0f2ff;
+    }
 
-.contact-us {
-  background-color: #fff;
-  padding: 80px 0;
-  text-align: center;
-}
+    .contact-us {
+      
+      background-color: #f0f8ff;
+      padding: 80px 0;
+      text-align: center;
+    }
 
-.contact-us h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  color: #333;
-}
+    .contact-us h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      
+      color: #333;
+    }
 
-.contact-us p {
-  font-size: 18px;
-  color: #666;
-  line-height: 1.5;
-}
+    .contact-us p {
+      font-size: 18px;
+      
+      color: #666;
+      line-height: 1.5;
+    }
 
-.contact-info-form {
-  display: flex;
-  justify-content: space-between;
-  padding: 50px 0;
-}
+    .contact-info-form {
+      display: flex;
+      justify-content: space-between;
+      padding: 50px 0;
+    }
 
-.contact-info-form .container {
-  width: 50%;
-  margin: 0 auto; /* Center the content within the container */
-}
+    .contact-info-form .container {
+      width: 50%;
+      margin: 0 auto; 
+    }
 
-.contact-info {
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  padding: 30px;
-}
+    .contact-info {
+      background-color: #fff; 
+      border-radius: 5px;
+      padding: 30px;
+    }
 
-.contact-info h2 {
-  font-size: 1.8em;
-  margin-bottom: 15px;
-  color: #333;
-}
+    .contact-info h2 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      
+      color: #333;
+    }
 
-.contact-info p {
-  font-size: 16px;
-  color: #666;
-  line-height: 1.5;
-}
+    .contact-info p {
+      font-size: 16px;
+  
+      color: #666;
+      line-height: 1.5;
+    }
 
-.contact-info ul {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
+    .contact-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
 
-.contact-info li {
-  margin-bottom: 10px;
-}
+    .contact-info li {
+      margin-bottom: 10px;
+    }
 
-.contact-info li i {
-  margin-right: 10px;
-  color: #333;
-  font-size: 18px;
-}
+    .contact-info li i {
+      margin-right: 10px;
+      
+      color: #2ecc71;
+      font-size: 18px;
+    }
 
-.contact-form {
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 30px;
-}
+    .contact-form {
+      background-color: #f5f5f5; 
+      border-radius: 5px;
+      padding: 30px;
+    }
 
-.contact-form h2 {
-  font-size: 1.8em;
-  margin-bottom: 15px;
-  color: #333;
-}
+    .contact-form h2 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      
+      color: #333;
+    }
 
-.form-group {
-  margin-bottom: 15px;
-}
+    .form-group {
+      margin-bottom: 15px;
+    }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 16px;
-  color: #333;
-}
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 16px;
+    
+      color: #333;
+    }
 
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box;
-  font-size: 16px;
-}
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
 
-.form-group textarea {
-  height: 100px;
-  resize: vertical;
-}
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
 
-.contact-form button {
-  background-color: #333;
-  color: #fff;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.contact-form button:hover {
-  background-color: #222;
-}
+    .contact-form button {
+      background-color: #333; 
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s ease-in-out;
+      
+    }
 
 
         </style>
