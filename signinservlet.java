@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Danuka
+ * @author Singer
  */
 @WebServlet(name = "signinservlet", urlPatterns = {"/signinservlet"})
 public class signinservlet extends HttpServlet {
@@ -92,7 +92,3 @@ public class signinservlet extends HttpServlet {
     }
     }
 }
-        
-      
-
-
