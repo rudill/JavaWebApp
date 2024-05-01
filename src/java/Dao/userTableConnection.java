@@ -9,8 +9,8 @@ public class userTableConnection {
 
     public static void deleteFromUsers(String UID) {
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/webapp";
-        String query = "DELETE FROM users WHERE UID = '"+ UID +"'";
+        String url = "jdbc:mysql://localhost:3306/store";
+        String query = "DELETE FROM information WHERE UserID = '"+ UID +"'";
 
         userDriver(driver, url, query);
     }

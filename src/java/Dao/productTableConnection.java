@@ -7,11 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class productTableConnection {
-    public static void insertToDb(String productName, String brand, String price, String category, String description, String fileName) {
+    public static void insertToDb(String productName, String brand, String price, String category, String description, String fileName, String quantity) {
         String driver = "com.mysql.jdbc.Driver";
          String url = "jdbc:mysql://localhost:3306/store";
-        String query = "INSERT INTO product (ProductName, Brand, Price, Category, Description, Image) VALUES ('"+ productName +"', '"+ brand +"', '"+ price +"', '"+category+"' , '"+ description +"' , '"+ fileName +"')";
-
+        String query = "INSERT INTO product (ProductName, Brand, Price, Category, Description, Image, quantity) VALUES ('"+ productName +"', '"+ brand +"', '"+ price +"', '"+category+"' , '"+ description +"' , '"+ fileName +"', '"+ quantity +"')";
         dbDriver(driver, url, query);
     }
 
@@ -65,10 +64,10 @@ public class productTableConnection {
         return resultList;
     }
 //
-public static void updateToDb(String ID, String productName, String brand, String price, String category, String description, String fileName) {
+public static void updateToDb(String ID, String productName, String brand, String price, String category, String description, String fileName, String quantity) {
     String driver = "com.mysql.jdbc.Driver";
     String url = "jdbc:mysql://localhost:3306/store";
-    String query = "UPDATE product SET ProductName = ?, Brand = ?, Price = ?, Category = ?, Description = ?, Image = ? WHERE productID = ?";
+    String query = "UPDATE product SET ProductName = ?, Brand = ?, Price = ?, Category = ?, Description = ?, Image = ?, quantity = ? WHERE productID = ?";
 
     try {
         Class.forName(driver);
@@ -80,7 +79,8 @@ public static void updateToDb(String ID, String productName, String brand, Strin
         st.setString(4, category);
         st.setString(5, description);
         st.setString(6, fileName);
-        st.setString(7, ID);
+        st.setString(7 , quantity);
+        st.setString(8, ID);
 
         st.executeUpdate();
         System.out.println("MySQL Operation Success !");

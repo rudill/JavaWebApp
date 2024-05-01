@@ -40,6 +40,18 @@ public class productData {
 
 
 
+    private String quantity;
+
+    public void setQuantity(String quantity){
+        this.quantity = quantity;
+    }
+
+    public String getQuantity(){
+        return quantity;
+    }
+
+
+
 
 
     private String category;

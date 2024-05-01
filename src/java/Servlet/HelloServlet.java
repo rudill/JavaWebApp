@@ -32,7 +32,7 @@ public class HelloServlet extends HttpServlet {
 
         List<Map<String, Object>> data = fetchAllFromDb();
         request.setAttribute("data", data);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin.jsp").forward(request, response);
 
     }
 
@@ -46,6 +46,7 @@ public class HelloServlet extends HttpServlet {
                 getData.setPrice(request.getParameter("price"));
                 getData.setCategory(request.getParameter("category"));
                 getData.setDescription(request.getParameter("description"));
+                getData.setQuantity(request.getParameter("quantity"));
 
 
             Part filePart = request.getPart("image");
@@ -59,7 +60,7 @@ public class HelloServlet extends HttpServlet {
             Files.copy(fileContent, Paths.get(uploadDirectory + getData.getFileName()), StandardCopyOption.REPLACE_EXISTING);
 
 
-            productTableConnection.insertToDb(getData.getProductName(), getData.getBrand(), getData.getPrice(), getData.getCategory(), getData.getDescription(), getData.getFileName());
+            productTableConnection.insertToDb(getData.getProductName(), getData.getBrand(), getData.getPrice(), getData.getCategory(), getData.getDescription(), getData.getFileName(), getData.getQuantity());
 
             response.sendRedirect("admin.jsp");
 
@@ -88,7 +89,7 @@ public class HelloServlet extends HttpServlet {
             if("delete".equals(method)){
                 String ID = request.getParameter("ID");
                 productTableConnection.deleteFromDb(ID);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("admin.jsp");
             }
             else if("update".equals(method)){
 
@@ -107,7 +108,8 @@ public class HelloServlet extends HttpServlet {
                 updateData.setPrice(request.getParameter("price"));
                 updateData.setCategory(request.getParameter("category"));
                 updateData.setDescription(request.getParameter("description"));
-                productTableConnection.updateToDb(updateData.getID(), updateData.getProductName(), updateData.getBrand(), updateData.getPrice(), updateData.getCategory(), updateData.getDescription(), updateData.getFileName());
+                updateData.setQuantity(request.getParameter("quantity"));
+                productTableConnection.updateToDb(updateData.getID(), updateData.getProductName(), updateData.getBrand(), updateData.getPrice(), updateData.getCategory(), updateData.getDescription(), updateData.getFileName(),updateData.getQuantity());
                 response.sendRedirect("admin.jsp");
             }
 

@@ -18,7 +18,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        function showEditModal(id, name, brand, price, category, description, image) {
+        function showEditModal(id, name, brand, price, category, description, image, quantity) {
             // Populate the form fields
             document.getElementById('upName').value = name;
             document.getElementById('upBrand').value = brand;
@@ -27,6 +27,7 @@
             document.getElementById('upDescription').value = description;
 
             document.getElementById('upImage').src = image;
+            document.getElementById('upQuantity').value = quantity;
 
 
             // Set the form action to update the product with the correct ID
@@ -36,6 +37,7 @@
             my_modal_4.showModal();
 
         }
+
 
         function showDeleteAlert() {
             alert("Are you sure you want to delete this product?");
@@ -256,6 +258,14 @@
                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                            placeholder="$299" required="">
                                                 </div>
+                                                
+                                                  <div class="w-full">
+                                                    <label for="quantity"
+                                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                                    <input type="number" name="quantity" id="quantity"
+                                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                            required="">
+                                                </div>
 
                                                 <div>
                                                     <label for="category"
@@ -345,6 +355,17 @@
                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                            placeholder="$299" required="">
                                                 </div>
+                                                
+                                                
+                                                <div class="w-full">
+                                                    <label for="quantity"
+                                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                                    <input type="number" name="quantity" id="upQuantity"
+                                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                           required="">
+                                                </div>
+                                                
+                                                
                                                 <div>
                                                     <label for="category"
                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
@@ -411,11 +432,11 @@
                         <div role="tablist" class="tabs tabs-bordered" >
                             <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Products" checked/>
 
-                            <div role="tabpanel" class="tab-content p-10">
+                            <div role="tabpanel" class="tab-content p-10" style="padding-left: 0px" >
 
-                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 " >
                                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                    <tr>
+                                     <tr>
 
                                         <th scope="col" class="px-4 py-3">Image</th>
                                         <th scope="col" class="px-4 py-3">Product name</th>
@@ -423,6 +444,7 @@
                                         <th scope="col" class="px-4 py-3">Brand</th>
                                         <th scope="col" class="px-4 py-3">Description</th>
                                         <th scope="col" class="px-4 py-3">Price</th>
+                                        <th scope="col" class="px-4 py-3">Quantity</th>
                                         <th scope="col" class="px-4 py-3">
                                             <span class="sr-only">Actions</span>
                                         </th>
@@ -487,10 +509,13 @@
                                         </td>
                                         <td class="px-4 py-3"><%=rs.getString("Price")%>
                                         </td>
+                                        
+                                        <td class="px-4 py-3"><%=rs.getString("quantity")%></td>
+                                        
                                         <td class="px-4 py-3 flex items-center justify-end">
                                             <form style="padding: 5px">
                                                 <button class="btn btn-success" type="button"
-                                                        onclick="showEditModal('<%=rs.getString("ProductID")%>', '<%=rs.getString("ProductName")%>', '<%=rs.getString("Brand")%>', '<%=rs.getString("Price")%>', '<%=rs.getString("Category")%>', '<%=rs.getString("Description")%>', '<%=rs.getString("Image")%>')"
+                                                        onclick="showEditModal('<%=rs.getString("ProductID")%>', '<%=rs.getString("ProductName")%>', '<%=rs.getString("Brand")%>', '<%=rs.getString("Price")%>', '<%=rs.getString("Category")%>', '<%=rs.getString("Description")%>', '<%=rs.getString("Image")%>', '<%=rs.getString("quantity")%>')"
                                                 >Edit
                                                 </button>
                                             </form>
@@ -835,12 +860,7 @@
 <%--                                </div>--%>
 <%--                            </div>--%>
 
-                            <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Pro" />
-
-                            <div role="tabpanel" class="tab-content p-10">
-
-                            </div>
-
+                            
 
 
                         </div>
