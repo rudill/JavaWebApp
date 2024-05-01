@@ -30,6 +30,14 @@
             <form class="form-horizontal" method="post" action="CheckoutServlet">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                     <!-- REVIEW ORDER -->
+
+  <%
+        Integer userId = (Integer) session.getAttribute("auth");
+            if (userId == null) {
+          out.println("You are not logged in. Please log in to Buy your products. <a href=\"login.jsp\">LOGIN</a>");
+         } else {
+    
+   %>
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             Your Order <div class="pull-right"><small><a class="afix-1" href="Cart.jsp">Edit Cart</a></small></div>
@@ -132,7 +140,7 @@
                                 </div>
                     <!-- SHIPPING METHOD END -->
                 </div>
-                                
+             <% }%>                        
                                 
             </form>
         </div>
