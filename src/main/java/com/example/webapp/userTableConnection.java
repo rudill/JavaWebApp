@@ -1,33 +1,78 @@
-package com.example.webapp;
+package Dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import model.userData;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class userTableConnection {
 
-    public static void deleteFromUsers(String UID) {
+
+    private static Connection connection;
+
+
+    public static void dbConnection(){
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/webapp";
-        String query = "DELETE FROM users WHERE UID = '"+ UID +"'";
+        String url = "jdbc:mysql://localhost:3306/store";
 
-        userDriver(driver, url, query);
-    }
-
-    private static void userDriver(String driver, String url, String query) {
         try {
             Class.forName(driver);
-            Connection con = DriverManager.getConnection(url,"root","");
-            Statement st = con.createStatement();
+            connection = DriverManager.getConnection(url, "root", "");
+            System.out.println("MySQL Connection Success !");
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("MySQL Connection Failed !");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void deleteFromUsers(String UID) {
+        dbConnection();
+        String query = "DELETE FROM information WHERE UserID = '"+ UID +"'";
+
+
+        try {
+
+            Statement st = connection.createStatement();
             st.executeUpdate(query);
             System.out.println("MySQL Operation Success !");
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println("MySQL Operation Failed !");
             throw new RuntimeException(e);
         }
     }
 
+    public static List<userData> fetchFromInformation() {
+
+        dbConnection();
+        String query = "SELECT * FROM information";
+
+        List <userData> userList = new ArrayList<>();
+
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()){
+                userData users = new userData();
+
+                users.setUID(rs.getString("UserID"));
+                users.setUsername(rs.getString("username"));
+                users.setFirstName(rs.getString("firstname"));
+                users.setLastName(rs.getString("lastname"));
+                users.setEmail(rs.getString("email"));
+
+                userList.add(users);
+
+            }
+            System.out.println("MySQL Operation Success !");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return userList;
     }
+
+}
 
