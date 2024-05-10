@@ -1,3 +1,5 @@
+<%@page import="model.Cart"%>
+<%@page import="java.util.List"%>
 <style>
     .navbar {
         font-weight: 500;
@@ -28,38 +30,62 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Products link -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#" role="button" aria-expanded="false"> Products </a>
-                </li>
+               
                 <!-- Category dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Category </a>
                     <ul class="dropdown-menu">
                         <!-- All Products -->
-                        <li><a class="dropdown-item" href="products.jsp?category=0">All Products</a></li>
-                        <!-- Hardcoded categories -->
-                        <li><a class="dropdown-item" href="products.jsp?category=1">Smartphones</a></li>
-                        <li><a class="dropdown-item" href="products.jsp?category=2">Headphones/Earbuds</a></li>
-                        <li><a class="dropdown-item" href="products.jsp?category=2">Smartwatches</a></li>
-                        <li><a class="dropdown-item" href="products.jsp?category=2">Chargers & Cables</a></li>
-                        <li><a class="dropdown-item" href="products.jsp?category=2">Power banks</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=all>All Products</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=phone>Smartphones</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=headphone>Headphones/Earbuds</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=smartwatch>Smartwatches</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=chargers>Chargers & Cables</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=powerbank>Power banks</a></li>
                     </ul>
                 </li>
+                 <a class="nav-link" href="OrderHistory" role="button" aria-expanded="false"> Order History </a>
             </ul>
            
+            
             <!-- User actions -->
             <ul class="navbar-nav ml-auto">
                 <!-- Cart link -->
                 <li class="nav-item active pe-3">
-                    <a class="nav-link position-relative" aria-current="page" href="cart.jsp">
+   <%
+    // Retrieve product list from session
+    List<Cart> CL = (List<Cart>) session.getAttribute("cartList");
+    // Get size of the product list
+    int cartSize = (CL != null) ? CL.size() : 0;
+
+  %>
+                    
+                   <span class="badge badge-sm indicator-item"><%= cartSize  %></span> <a class="nav-link position-relative" aria-current="page" href="Cart.jsp">
                         <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> &nbsp;Cart
                         
                     </a>
+                        
                 </li>
-               
+                
                
             </ul>
+                <%
+
+        String username = (String) session.getAttribute("loggeduser");
+
+            if (username == null) {
+    
+           out.print("<a class=\"nav-link\" href=\"./login.jsp\" role=\"button\" aria-expanded=\"false\"> LOGIN </a>");
+
+         } else {
+              
+              out.println("<a class=\"nav-link\" href=\"logout\" role=\"button\" aria-expanded=\"false\"> LOGOUT </a>");
+            }
+    
+          %>         
+                        
+      
+      </div>
         </div>
     </div>
     <!-- End of User navigation bar -->
