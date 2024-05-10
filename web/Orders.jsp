@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
-<%@page import="mypackage.Order"%>
 <%@page import="mypackage.OrderDetails"%>
 
 <!DOCTYPE html>
@@ -37,12 +36,12 @@
        } else {
                 %>
             
-            <% 
+       <%
             try {
-                Order order = new Order();
-                List<OrderDetails> orders = order.getOrders(userid); // Replace 2 with actual user ID
+              
+                List<OrderDetails> orders = (List)request.getAttribute("orderhistory");
                 for (OrderDetails D : orders) {
-            %>
+      %>
             
             
    
