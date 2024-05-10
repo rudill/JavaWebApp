@@ -13,7 +13,6 @@ public class Cart
     private String Image;
     private int Quantity;;
     
-
     public Cart(int ID, String ProductName, double Price, String Category, String Image,int Quantity) 
     {
      this.ID=ID;
@@ -24,48 +23,39 @@ public class Cart
      this.Quantity=Quantity;
     }
 
-   
-
     public int getID()
     {
         return ID;
     }
-    
-    
-    
+ 
      public String getProductName() {
         return ProductName;
     }
-    
     
     public String getCategory()
     {
         return Category;
     }
     
-    
     public double getPrice()
     {
         return Price;
     }
     
-    
     public String getImage()
     {
         return Image;
     }
-    
-    
-    public int getQuantity()
-    {
-        
-        return Quantity;
-    }
-
+   
    public void setQuantity(int Quantity)
    {
        this.Quantity=Quantity;
    }
+   
+    public int getQuantity()
+    { 
+        return Quantity;
+    }
 
     
 }

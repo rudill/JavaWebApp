@@ -23,9 +23,9 @@ public class userServlet extends HttpServlet {
             userData DeleteUser = new userData();
             String method = request.getParameter("method");
             if (method.equals("delete")) {
-                DeleteUser.setUID(Integer.parseInt(request.getParameter("UID")));
+                DeleteUser.setUID((request.getParameter("UID")));
                 userTableConnection.deleteFromUsers(String.valueOf(DeleteUser.getUID()));
-                response.sendRedirect("admin.jsp");
+                response.sendRedirect("index.jsp");
             }
         }
         catch (Exception e) {

@@ -18,7 +18,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        function showEditModal(id, name, brand, price, category, description, image, quantity) {
+        function showEditModal(id, name, brand, price, category, description, image) {
             // Populate the form fields
             document.getElementById('upName').value = name;
             document.getElementById('upBrand').value = brand;
@@ -27,17 +27,15 @@
             document.getElementById('upDescription').value = description;
 
             document.getElementById('upImage').src = image;
-            document.getElementById('upQuantity').value = quantity;
 
 
             // Set the form action to update the product with the correct ID
             document.getElementById('editForm').action = "hello-servlet?method=update&ID=" + id;
 
-            // Show the model
+            // Show the modal
             my_modal_4.showModal();
 
         }
-
 
         function showDeleteAlert() {
             alert("Are you sure you want to delete this product?");
@@ -78,11 +76,6 @@
         </div>
     </nav>
 
-<%--    <header class="bg-white shadow">--%>
-<%--        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">--%>
-<%--            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>--%>
-<%--        </div>--%>
-<%--    </header>--%>
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             <section class="p-3 sm:p-5">
@@ -91,131 +84,12 @@
                     <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                         <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                             <div class="w-full md:w-1/2">
-<%--                                <form class="flex items-center">--%>
-<%--                                    <label for="simple-search" class="sr-only">Search</label>--%>
-<%--                                    <div class="relative w-full">--%>
-<%--                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">--%>
-<%--                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">--%>
-<%--                                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />--%>
-<%--                                            </svg>--%>
-<%--                                        </div>--%>
-<%--                                        <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search" required="">--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-
-                                <!-- Open the model using ID.showModal() method -->
-
 
                             </div>
                             <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
 
 
-                                <%
-                                    String inboxDriver = "com.mysql.jdbc.Driver";
-                                    
-                                    String inboxUrl = "jdbc:mysql://localhost:3306/store";
-                                    String inboxQuery = "SELECT * FROM inbox";
 
-                                    try {
-                                        Class.forName(inboxDriver);
-                                    } catch (ClassNotFoundException e) {
-                                        throw new RuntimeException(e);
-                                    }
-
-                                    Connection inboxCon = null;
-                                    try {
-                                        inboxCon = DriverManager.getConnection(inboxUrl,"root","");
-                                    } catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    Statement inboxSt = null;
-                                    try {
-                                        inboxSt = inboxCon.createStatement();
-                                    } catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    ResultSet inboxRs = null;
-                                    try {
-                                        inboxRs = inboxSt.executeQuery(inboxQuery);
-                                    }
-                                    catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-
-
-
-//                                    int count = 0;
-//
-//
-//                                    while (inboxRs.next()) {
-//                                        count++;
-//                                    }
-
-
-                                %>
-
-
-                                <div class="indicator">
-                                    <span class="indicator-item badge badge-secondary"></span>
-                                    <button class="btn btn-primary" onclick="my_modal_1.showModal()">Inbox</button>
-                                </div>
-                                <dialog id="my_modal_1" class="modal">
-                                    <div class="modal-box">
-                                        <h3 class="font-bold text-lg">Hello!</h3>
-                                        <p class="py-4">
-
-
-
-                                        <%
-
-                                                while (true){
-                                                    try {
-                                                        if (!inboxRs.next()) break;
-                                                    } catch (SQLException e) {
-                                                        throw new RuntimeException(e);
-                                                    }
-
-                                           %>
-
-
-
-
-
-
-                                        <div class="chat chat-start" style="padding-bottom: 10px">
-                                            <div class="chat-image avatar">
-                                                <div class="w-10 rounded-full">
-                                                    <img alt="Tailwind CSS chat bubble component"
-                                                         src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div class="chat-header">
-                                                <%=inboxRs.getString("userName")%>
-
-                                            </div>
-                                            <div class="chat-bubble">
-                                                <%=inboxRs.getString("Message")%>
-                                            </div>
-
-                                        </div>
-
-                                        <%
-
-
-                                            }
-
-                                        %>
-
-
-                                        </p>
-                                        <div class="modal-action">
-                                            <form method="dialog">
-                                                <!-- if there is a button in form, it will close the model -->
-                                                <button class="btn">Close</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </dialog>
 
                                 <button type="button"
                                         class="  btn btn-outline btn-accent  flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
@@ -227,6 +101,11 @@
                                     </svg>
                                     Add product
                                 </button>
+                                <form method="get" action="hello-servlet">
+
+                                   <input type="submit" class="btn btn-primary" value="Refresh">
+
+                                </form>
                                 <dialog id="my_modal_3" class="modal">
                                     <div class="modal-box">
                                         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add
@@ -258,13 +137,14 @@
                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                            placeholder="$299" required="">
                                                 </div>
-                                                
-                                                  <div class="w-full">
+
+
+                                                <div class="w-full">
                                                     <label for="quantity"
                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
                                                     <input type="number" name="quantity" id="quantity"
                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                            required="">
+                                                           placeholder="$299" required="">
                                                 </div>
 
                                                 <div>
@@ -355,17 +235,6 @@
                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                            placeholder="$299" required="">
                                                 </div>
-                                                
-                                                
-                                                <div class="w-full">
-                                                    <label for="quantity"
-                                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
-                                                    <input type="number" name="quantity" id="upQuantity"
-                                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                           required="">
-                                                </div>
-                                                
-                                                
                                                 <div>
                                                     <label for="category"
                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
@@ -427,19 +296,22 @@
                         </div>
 
 
-                        <%--                        <div class="flex flex-col w-full">--%>
-                        <%--                            <div class="grid hover:bg-base-300/100 card bg-base-300 rounded-box place-items-center">--%>
+
                         <div role="tablist" class="tabs tabs-bordered" >
                             <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Products" checked/>
 
-                            <div role="tabpanel" class="tab-content p-10" style="padding-left: 0px" >
+                            <div role="tabpanel" class="tab-content p-10" style="padding: 0">
 
-                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 " >
+                                <div class="overflow-x-auto sm:overflow-auto md:overflow-auto lg:overflow-auto xl:overflow-auto">
+
+                                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
                                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                     <tr>
+                                    <tr>
+
+
 
                                         <th scope="col" class="px-4 py-3">Image</th>
-                                        <th scope="col" class="px-4 py-3">Product name</th>
+                                        <th scope="col" class="px-4 py-3" style="width: 50px">Product name</th>
                                         <th scope="col" class="px-4 py-3">Category</th>
                                         <th scope="col" class="px-4 py-3">Brand</th>
                                         <th scope="col" class="px-4 py-3">Description</th>
@@ -451,75 +323,36 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                                    <%
-
-                                        String driver = "com.mysql.jdbc.Driver";
-                                        String url = "jdbc:mysql://localhost:3306/store";
-                                        String query = "SELECT * FROM product";
-
-
-                                        try {
-                                            Class.forName(driver);
-                                        } catch (ClassNotFoundException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                        Connection con = null;
-                                        try {
-                                            con = DriverManager.getConnection(url, "root", "");
-                                        } catch (SQLException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                        Statement st = null;
-                                        try {
-                                            st = con.createStatement();
-                                        } catch (SQLException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                        ResultSet rs = null;
-                                        try {
-                                            rs = st.executeQuery(query);
-                                        } catch (SQLException e) {
-                                            throw new RuntimeException(e);
-                                        }
-
-                                        while (true) {
-                                            try {
-                                                if (!rs.next()) break;
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                    %>
+                                <c:forEach var="product" items="${products}">
                                     <tr class="border-b dark:border-gray-700">
                                         <td class="px-4 py-3">
                                             <div class="flex items
                                         -center space-x-3">
-                                                <img src="images/<%=rs.getString("Image")%>" alt="Product image"
+                                                <img src="images/${product.getFileName()}" alt="Product image"
                                                      class="w-8 h-8 rounded-lg mask mask-squircle">
                                                 <th scope="row"
-                                                    class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%=rs.getString("ProductName")%>
+                                                    class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">${product.getProductName()}
                                                 </th>
                                             </div>
                                         </td>
-                                        <td class="px-4 py-3"><%=rs.getString("Category")%>
+                                        <td class="px-4 py-3">${product.getCategory()}
                                         </td>
-                                        <td class="px-4 py-3"><%=rs.getString("Brand")%>
+                                        <td class="px-4 py-3">${product.getBrand()}
                                         </td>
-                                        <td class="px-4 py-3"><%=rs.getString("Description")%>
+                                        <td class="px-4 py-3">${product.getDescription()}
                                         </td>
-                                        <td class="px-4 py-3"><%=rs.getString("Price")%>
+                                        <td class="px-4 py-3">${product.getPrice()}
                                         </td>
-                                        
-                                        <td class="px-4 py-3"><%=rs.getString("quantity")%></td>
-                                        
+                                        <td class="px-4 py-3">${product.getQuantity()}</td>
                                         <td class="px-4 py-3 flex items-center justify-end">
                                             <form style="padding: 5px">
                                                 <button class="btn btn-success" type="button"
-                                                        onclick="showEditModal('<%=rs.getString("ProductID")%>', '<%=rs.getString("ProductName")%>', '<%=rs.getString("Brand")%>', '<%=rs.getString("Price")%>', '<%=rs.getString("Category")%>', '<%=rs.getString("Description")%>', '<%=rs.getString("Image")%>', '<%=rs.getString("quantity")%>')"
+                                                        onclick="showEditModal('${product.getID()}', '${product.getProductName()}', '${product.getBrand()}', '${product.getPrice()}',
+                                                                '${product.getCategory()}', '${product.getDescription()}', '${product.getFileName()}')"
                                                 >Edit
                                                 </button>
                                             </form>
-                                            <form action="hello-servlet?method=delete&ID=<%=rs.getString("ProductID")%>"
+                                            <form action="hello-servlet?method=delete&ID=${product.getID()}"
                                                   method="post" style="padding: 5px">
                                                 <button class="btn btn-error" type="submit" onclick="showDeleteAlert()">
                                                     Delete
@@ -527,12 +360,12 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    <%
-                                        }
-                                    %>
+                                </c:forEach>
 
                                     </tbody>
                                 </table>
+
+                                </div>
 
                             </div>
 
@@ -552,90 +385,30 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <%
 
-                                            String query2 = "SELECT * FROM information";
-
-                                            try {
-                                                Class.forName(driver);
-                                            } catch (ClassNotFoundException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            try {
-                                                con = DriverManager.getConnection(url, "root", "");
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            try {
-                                                st = con.createStatement();
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            try {
-                                                rs = st.executeQuery(query2);
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            while (true) {
-                                                try {
-                                                    if (!rs.next()) break;
-                                                } catch (SQLException e) {
-                                                    throw new RuntimeException(e);
-                                                }
-
-                                        %>
+                                <c:forEach var="user" items="${user}">
                                         <tr>
-
                                             <td class="px-4 py-3" style="font-weight: bold">
-
-
-                                                <div class="badge badge-accent"><%=rs.getString("username")%>
+                                                <div class="badge badge-accent">${user.getUsername()}
                                                 </div>
-
-
-                                            </td>
-
-                                            <td class="px-4 py-3">
-
-                                                <%=rs.getString("email")%>
                                             </td>
                                             <td class="px-4 py-3">
-
-                                                <%=rs.getString("firstname")%>
-
+                                                    ${user.getEmail()}
                                             </td>
-
-
                                             <td class="px-4 py-3">
-
-                                                <%=rs.getString("lastname")%>
-
+                                                    ${user.getFirstName()}
                                             </td>
-
                                             <td class="px-4 py-3">
-
-                                                <form action="user-servlet?method=delete&UID=<%=rs.getString("UserID")%>"
+                                                    ${user.getLastName()}
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <form action="user-servlet?method=delete&UID=${user.getUID()}"
                                                       method="post">
                                                     <button class="btn btn-error btn-xs">Remove</button>
                                                 </form>
-
-
                                             </td>
                                         </tr>
-
-                                        <%
-                                            }
-
-                                        %>
-                                        <!-- row 2 -->
-
-                                        <!-- row 3 -->
-
-                                        <!-- row 4 -->
+                                </c:forEach>
 
                                         </tbody>
                                         <!-- foot -->
@@ -665,40 +438,7 @@
 
                                         <tbody>
 
-                                        <%
-
-                                            String orderQuery = "SELECT orders.orderID, information.username, product.ProductName, product.Price , orders.Quantity FROM orders INNER JOIN information ON orders.UserID = information.UserID INNER JOIN product ON orders.productID = product.productID";
-                                            try {
-                                                Class.forName(driver);
-                                            } catch (ClassNotFoundException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                            try {
-                                                con = DriverManager.getConnection(url, "root", "");
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                            try {
-                                                st = con.createStatement();
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                            try {
-                                                rs = st.executeQuery(orderQuery);
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            while (true) {
-                                                try {
-                                                    if (!rs.next()) break;
-                                                } catch (SQLException e) {
-                                                    throw new RuntimeException(e);
-                                                }
-
-
-                                        %>
-
+                                    <c:forEach var="order" items="${order}">
                                         <tr>
 
                                             <td class="px-4 py-3" style="font-weight: bold">
@@ -706,7 +446,7 @@
 
                                                 <div class="badge badge-accent">
 
-                                                    <%=rs.getString("username")%>
+                                                    ${order.getOrderUserName()}
                                                 </div>
 
 
@@ -715,48 +455,25 @@
                                             <td class="px-4 py-3">
 
 
-                                                <%=rs.getString("ProductName")%>
+                                                ${order.getOrderProductName()}
 
 
                                             </td>
                                             <td class="px-4 py-3">
 
 
-                                                <%=rs.getString("Quantity")%>
+                                                ${order.getOrderQuantity() }
 
 
                                             </td>
 
 
+
+
                                             <td class="px-4 py-3">
 
-
-                                                <%
-                                                    int total;
-                                                    try {
-
-                                                        int price = 0;
-                                                        try {
-                                                            price = Integer.parseInt(rs.getString("Price"));
-                                                        } catch (SQLException e) {
-                                                            throw new RuntimeException(e);
-                                                        }
-                                                        int quantity = 0;
-                                                        try {
-                                                            quantity = Integer.parseInt(rs.getString("Quantity"));
-                                                        } catch (SQLException e) {
-                                                            throw new RuntimeException(e);
-                                                        }
-                                                        total = price * quantity;
-
-
-                                                    } catch (NumberFormatException e) {
-                                                        throw new RuntimeException(e);
-                                                    }
-
-                                                %>
-
-                                                <%=total%>
+                                                <c:set var="totalPrice" value="${order.getOrderPrice() * order.getOrderQuantity()}"/>
+                                                ${totalPrice}
 
 
                                             </td>
@@ -769,10 +486,7 @@
                                             </td>
                                         </tr>
 
-                                        <%
-                                            }
-                                        %>
-
+                                    </c:forEach>
                                         </tbody>
 
 
@@ -782,88 +496,9 @@
 
                             </div>
 
-<%--                            <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Orders2"/>--%>
-<%--                            <div role="tabpanel" class="tab-content p-10">--%>
-<%--                                <div class="overflow-x-auto">--%>
-<%--                                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">--%>
-<%--                                        <!-- head -->--%>
-<%--                                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">--%>
-<%--                                        <tr>--%>
-
-<%--                                            <th scope="col" class="px-4 py-3">Order ID</th>--%>
-<%--                                            <th scope="col" class="px-4 py-3">User Name</th>--%>
-<%--                                            <th scope="col" class="px-4 py-3">Product Names</th>--%>
-<%--                                            <th scope="col" class="px-4 py-3">Product Count</th>--%>
-<%--                                            <th scope="col" class="px-4 py-3"></th>--%>
-<%--                                        </tr>--%>
-<%--                                        </thead>--%>
-<%--                                        <tbody>--%>
-
-<%--                                        <%--%>
-<%--                                            String advancedQuery = "SELECT orders.orderID, users.UserName, GROUP_CONCAT(product.productName) as product_names, COUNT(orders.productID) as product_count " +--%>
-<%--                                                    "FROM orders " +--%>
-<%--                                                    "JOIN product ON orders.productID = product.productID " +--%>
-<%--                                                    "JOIN users ON orders.UID = users.UID " +--%>
-<%--                                                    "GROUP BY orders.orderID, users.UserName " +--%>
-<%--                                                    "ORDER BY product_count DESC";--%>
-
-<%--                                            try {--%>
-<%--                                                Class.forName(driver);--%>
-<%--                                            } catch (ClassNotFoundException e) {--%>
-<%--                                                throw new RuntimeException(e);--%>
-<%--                                            }--%>
-<%--                                            try {--%>
-<%--                                                con = DriverManager.getConnection(url, "root", "");--%>
-<%--                                            } catch (SQLException e) {--%>
-<%--                                                throw new RuntimeException(e);--%>
-<%--                                            }--%>
-<%--                                            try {--%>
-<%--                                                st = con.createStatement();--%>
-<%--                                            } catch (SQLException e) {--%>
-<%--                                                throw new RuntimeException(e);--%>
-<%--                                            }--%>
-<%--                                            try {--%>
-<%--                                                rs = st.executeQuery(advancedQuery);--%>
-<%--                                            } catch (SQLException e) {--%>
-<%--                                                throw new RuntimeException(e);--%>
-<%--                                            }--%>
-
-<%--                                            while (true) {--%>
-<%--                                                try {--%>
-<%--                                                    if (!rs.next()) break;--%>
-<%--                                                } catch (SQLException e) {--%>
-<%--                                                    throw new RuntimeException(e);--%>
-<%--                                                }--%>
-<%--                                        %>--%>
-
-
-<%--                                        <tr>--%>
-
-<%--                                            <td class="px-4 py-3"><%= rs.getString("orderID") %>--%>
-<%--                                            </td>--%>
-<%--                                            <td class="px-4 py-3"><%= rs.getString("userName") %>--%>
-<%--                                            </td>--%>
-<%--                                            <td class="px-4 py-3"><%= rs.getString("product_names") %>--%>
-<%--                                            </td>--%>
-<%--                                            <td class="px-4 py-3"><%= rs.getString("product_count") %>--%>
-<%--                                            </td>--%>
-
-
-<%--                                        </tr>--%>
-
-<%--                                        <%--%>
-<%--                                            }--%>
-<%--                                        %>--%>
-
-<%--                                        </tbody>--%>
-<%--                                    </table>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-                            
-
-
                         </div>
+
+
                      </div>
                 </div>
             </section>

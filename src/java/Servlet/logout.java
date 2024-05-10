@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ecompackage;
+package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,10 +31,17 @@ public class logout extends HttpServlet {
         response.sendRedirect("signin.jsp");
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    
+    {
+        HttpSession session = request.getSession();
+        session.removeAttribute("loggeduser");
+        session.removeAttribute("cartList");
+        response.sendRedirect("index.jsp");
+        
+        
+    }
    
 }

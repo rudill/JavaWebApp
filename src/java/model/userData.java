@@ -6,7 +6,7 @@ public class userData {
     private String email;
     private String firstName;
     private String lastName;
-    private int UID;
+    private String UID;
 
     public void setUsername(String username) {
         this.username = username;
@@ -40,11 +40,11 @@ public class userData {
         return lastName;
     }
 
-    public void setUID(int UID) {
+    public void setUID(String UID) {
         this.UID = UID;
     }
 
-    public int getUID() {
+    public String getUID() {
         return UID;
     }
 

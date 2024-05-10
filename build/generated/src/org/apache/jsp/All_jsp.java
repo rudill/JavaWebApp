@@ -153,9 +153,9 @@ public final class All_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <!-- All Products -->\n");
       out.write("                        <li><a class=\"dropdown-item\" href=\"./All.jsp\">All Products</a></li>\n");
       out.write("                        <!-- Hardcoded categories -->\n");
-      out.write("                        <li><a class=\"dropdown-item\" href=\"./phone.jsp\">Smart phones</a></li>\n");
+      out.write("                        <li><a class=\"dropdown-item\" href=\"./phone.jsp\">Smartphones</a></li>\n");
       out.write("                        <li><a class=\"dropdown-item\" href=\"./headphones.jsp\">Headphones/Earbuds</a></li>\n");
-      out.write("                        <li><a class=\"dropdown-item\" href=\"./smartwatches.jsp\">Smart watches</a></li>\n");
+      out.write("                        <li><a class=\"dropdown-item\" href=\"./smartwatches.jsp\">Smartwatches</a></li>\n");
       out.write("                        <li><a class=\"dropdown-item\" href=\"./chargers.jsp\">Chargers & Cables</a></li>\n");
       out.write("                        <li><a class=\"dropdown-item\" href=\"./powerbanks.jsp\">Power banks</a></li>\n");
       out.write("                    </ul>\n");
@@ -187,22 +187,6 @@ public final class All_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("               \n");
       out.write("               \n");
       out.write("            </ul>\n");
-      out.write("                        \n");
-      out.write("            <ul class=\"navbar-nav ml-auto\" style=\"padding-left: 10px\">\n");
-      out.write("                <!-- Cart link -->\n");
-      out.write("                <li class=\"nav-item active pe-3\">\n");
-      out.write("   \n");
-      out.write("                    \n");
-      out.write("                   <a class=\"nav-link position-relative\" aria-current=\"page\" href=\"login.jsp\"> \n");
-      out.write("<!--                    <i class=\"fa-solid fa-user fa-lg\" style=\"color: white\"></i>-->\n");
-      out.write("                    <i class=\"fa-solid fa-right-to-bracket fa-lg\" style=\"color: white\"></i>\n");
-      out.write("                   </a>\n");
-      out.write("                        \n");
-      out.write("                    </a>\n");
-      out.write("                </li>\n");
-      out.write("               \n");
-      out.write("               \n");
-      out.write("            </ul>\n");
       out.write("         \n");
       out.write("          \n");
       out.write("      </div>\n");
@@ -217,85 +201,76 @@ public final class All_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<div class=\"card-container\">\n");
       out.write("    ");
  
-        try {
-            // Establish database connection
-            String url = "jdbc:mysql://localhost:3306/store";
-            String driver = "com.mysql.jdbc.Driver";
-            Class.forName(driver);
-            Connection con = DriverManager.getConnection(url, "root", "");
-            
-            // Prepare SQL query
-            String query = "SELECT * FROM product ";
-            PreparedStatement preparedStatement = con.prepareStatement(query);
-            
-            // Execute query
-            ResultSet rs = preparedStatement.executeQuery();
-            
-            // Iterate over result set and display data
-            while (rs.next()) { 
+        List data = (List) request.getAttribute("all");
+        
+        if(data != null)
+        {
+            for(int i=0; i< data.size();i+= 7)
+            {
     
       out.write("\n");
-      out.write("    <div class=\"card card-compact bg-base-100 shadow-xl\">\n");
+      out.write(" <div class=\"card card-compact bg-base-100 shadow-xl\">\n");
       out.write("        <figure><img src=\"images/");
-      out.print( rs.getString("Image") );
+      out.print( data.get(i) );
       out.write("\" width=\"180\" height=\"180\" alt=\"image\"/></figure>\n");
       out.write("        <div class=\"card-body\">\n");
       out.write("            <h2 class=\"card-title\">");
-      out.print( rs.getString("ProductName") );
+      out.print( data.get(i + 1) );
       out.write("</h2>\n");
       out.write("            <p>");
-      out.print( rs.getString("Brand") );
+      out.print( data.get(i + 2) );
       out.write("</p>\n");
       out.write("            <p>Category: ");
-      out.print( rs.getString("Category") );
+      out.print( data.get(i + 3) );
       out.write("</p>\n");
       out.write("            <p><b>Price: ");
-      out.print( rs.getDouble("Price") );
+      out.print( data.get(i + 4) );
       out.write("</b></p>\n");
-      out.write("            <p> ");
-      out.print( rs.getString("Description") );
+      out.write("            <p>");
+      out.print( data.get(i + 5) );
       out.write("</p>\n");
       out.write("            <div class=\"card-actions justify-end\">\n");
-      out.write("                \n");
-      out.write("             \n");
       out.write("                <form action=\"addToCart\" method=\"post\"> \n");
-      out.write("                        <input type=\"hidden\" name=\"productId\" value=\"");
-      out.print( rs.getInt("ProductID") );
+      out.write("                    <input type=\"hidden\" name=\"productId\" value=\"");
+      out.print( data.get(i + 6) );
       out.write("\"> \n");
-      out.write("                        <input type=\"hidden\" name=\"productName\" value=\"");
-      out.print( rs.getString("ProductName") );
+      out.write("                    <input type=\"hidden\" name=\"productName\" value=\"");
+      out.print( data.get(i + 1) );
       out.write("\"> \n");
-      out.write("                        <input type=\"hidden\" name=\"Category\" value=\"");
-      out.print( rs.getString("Category") );
+      out.write("                    <input type=\"hidden\" name=\"Category\" value=\"");
+      out.print( data.get(i + 3) );
       out.write("\">\n");
-      out.write("                        <input type=\"hidden\" name=\"Price\" value=\"");
-      out.print( rs.getDouble("Price") );
+      out.write("                    <input type=\"hidden\" name=\"Price\" value=\"");
+      out.print( data.get(i + 4) );
       out.write("\">\n");
-      out.write("                        <input type=\"hidden\" name=\"Image\" value=\"");
-      out.print( rs.getString("Image") );
+      out.write("                    <input type=\"hidden\" name=\"Image\" value=\"");
+      out.print( data.get(i) );
       out.write("\">\n");
-      out.write("                        <button type=\"submit\" class=\"btn btn-primary\">ADD CART</button>\n");
-      out.write("                    </form>\n");
-      out.write("                \n");
-      out.write("            </div>\n");
+      out.write("                    <button type=\"submit\" class=\"btn btn-primary\">ADD CART</button>\n");
+      out.write("                </form>\n");
+      out.write("\n");
+      out.write("           </div>\n");
       out.write("        </div>\n");
+      out.write("        \n");
       out.write("    </div>\n");
+      out.write("   \n");
+      out.write("\n");
       out.write("    ");
  
             }
             
-            // Close resources
-            rs.close();
-            preparedStatement.close();
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     
+      out.write("\n");
       out.write("\n");
       out.write("</div>\n");
       out.write("\n");
       out.write("    </div>\n");
+      out.write("     <form method=\"post\" action=\"productServlet\" >\n");
+      out.write("        \n");
+      out.write("        <input type=\"submit\" value=\"goo\">\n");
+      out.write("    </form>\n");
+      out.write("   \n");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Components/Footer.jsp", out, false);
       out.write("\n");
       out.write("</body>\n");

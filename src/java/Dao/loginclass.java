@@ -65,6 +65,7 @@ public class loginclass
 
             pst.setString(1, username);
             pst.setString(2, email);
+           
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {

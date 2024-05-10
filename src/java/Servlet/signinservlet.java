@@ -19,16 +19,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "signinservlet", urlPatterns = {"/signinservlet"})
 public class signinservlet extends HttpServlet {
 
-   
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-          
-        }
-    }
 
-   
    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +36,7 @@ public class signinservlet extends HttpServlet {
         if (isValid)
         {
             HttpSession session = request.getSession();
-            session.setAttribute("auuth",name);
+            session.setAttribute("loggeduser",name);
             
             Cookie cookie = new Cookie("name",name);
             cookie.setMaxAge(60*60*60);

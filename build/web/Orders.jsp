@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="Dao.Order"%>
 <%@page import="model.OrderDetails"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -45,8 +44,8 @@
             
             <% 
             try {
-                Order order = new Order();
-                List<OrderDetails> orders = order.getOrders(userId); 
+              
+                List<OrderDetails> orders = (List)request.getAttribute("orderhistory");
                 for (OrderDetails D : orders) {
             %>
             

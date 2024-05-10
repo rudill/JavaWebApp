@@ -12,10 +12,23 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List<String> _jspx_dependants;
 
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_set_var_value_nobody;
+
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
     return _jspx_dependants;
+  }
+
+  public void _jspInit() {
+    _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_set_var_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+  }
+
+  public void _jspDestroy() {
+    _jspx_tagPool_c_forEach_var_items.release();
+    _jspx_tagPool_c_set_var_value_nobody.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -56,7 +69,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <script src=\"https://cdn.tailwindcss.com\"></script>\r\n");
       out.write("\r\n");
       out.write("    <script>\r\n");
-      out.write("        function showEditModal(id, name, brand, price, category, description, image, quantity) {\r\n");
+      out.write("        function showEditModal(id, name, brand, price, category, description, image) {\r\n");
       out.write("            // Populate the form fields\r\n");
       out.write("            document.getElementById('upName').value = name;\r\n");
       out.write("            document.getElementById('upBrand').value = brand;\r\n");
@@ -65,17 +78,15 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            document.getElementById('upDescription').value = description;\r\n");
       out.write("\r\n");
       out.write("            document.getElementById('upImage').src = image;\r\n");
-      out.write("            document.getElementById('upQuantity').value = quantity;\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("            // Set the form action to update the product with the correct ID\r\n");
       out.write("            document.getElementById('editForm').action = \"hello-servlet?method=update&ID=\" + id;\r\n");
       out.write("\r\n");
-      out.write("            // Show the model\r\n");
+      out.write("            // Show the modal\r\n");
       out.write("            my_modal_4.showModal();\r\n");
       out.write("\r\n");
       out.write("        }\r\n");
-      out.write("\r\n");
       out.write("\r\n");
       out.write("        function showDeleteAlert() {\r\n");
       out.write("            alert(\"Are you sure you want to delete this product?\");\r\n");
@@ -118,15 +129,6 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </div>\r\n");
       out.write("    </nav>\r\n");
       out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
       out.write("    <main>\r\n");
       out.write("        <div class=\"mx-auto max-w-7xl py-6 sm:px-6 lg:px-8\">\r\n");
       out.write("            <section class=\"p-3 sm:p-5\">\r\n");
@@ -135,151 +137,12 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <div class=\"bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden\">\r\n");
       out.write("                        <div class=\"flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4\">\r\n");
       out.write("                            <div class=\"w-full md:w-1/2\">\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                <!-- Open the model using ID.showModal() method -->\r\n");
-      out.write("\r\n");
       out.write("\r\n");
       out.write("                            </div>\r\n");
       out.write("                            <div class=\"w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0\">\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                                ");
-
-                                    String inboxDriver = "com.mysql.jdbc.Driver";
-                                    
-                                    String inboxUrl = "jdbc:mysql://localhost:3306/store";
-                                    String inboxQuery = "SELECT * FROM inbox";
-
-                                    try {
-                                        Class.forName(inboxDriver);
-                                    } catch (ClassNotFoundException e) {
-                                        throw new RuntimeException(e);
-                                    }
-
-                                    Connection inboxCon = null;
-                                    try {
-                                        inboxCon = DriverManager.getConnection(inboxUrl,"root","");
-                                    } catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    Statement inboxSt = null;
-                                    try {
-                                        inboxSt = inboxCon.createStatement();
-                                    } catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    ResultSet inboxRs = null;
-                                    try {
-                                        inboxRs = inboxSt.executeQuery(inboxQuery);
-                                    }
-                                    catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-
-
-
-//                                    int count = 0;
-//
-//
-//                                    while (inboxRs.next()) {
-//                                        count++;
-//                                    }
-
-
-                                
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                <div class=\"indicator\">\r\n");
-      out.write("                                    <span class=\"indicator-item badge badge-secondary\"></span>\r\n");
-      out.write("                                    <button class=\"btn btn-primary\" onclick=\"my_modal_1.showModal()\">Inbox</button>\r\n");
-      out.write("                                </div>\r\n");
-      out.write("                                <dialog id=\"my_modal_1\" class=\"modal\">\r\n");
-      out.write("                                    <div class=\"modal-box\">\r\n");
-      out.write("                                        <h3 class=\"font-bold text-lg\">Hello!</h3>\r\n");
-      out.write("                                        <p class=\"py-4\">\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                        ");
-
-
-                                                while (true){
-                                                    try {
-                                                        if (!inboxRs.next()) break;
-                                                    } catch (SQLException e) {
-                                                        throw new RuntimeException(e);
-                                                    }
-
-                                           
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                        <div class=\"chat chat-start\" style=\"padding-bottom: 10px\">\r\n");
-      out.write("                                            <div class=\"chat-image avatar\">\r\n");
-      out.write("                                                <div class=\"w-10 rounded-full\">\r\n");
-      out.write("                                                    <img alt=\"Tailwind CSS chat bubble component\"\r\n");
-      out.write("                                                         src=\"https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg\"/>\r\n");
-      out.write("                                                </div>\r\n");
-      out.write("                                            </div>\r\n");
-      out.write("                                            <div class=\"chat-header\">\r\n");
-      out.write("                                                ");
-      out.print(inboxRs.getString("userName"));
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </div>\r\n");
-      out.write("                                            <div class=\"chat-bubble\">\r\n");
-      out.write("                                                ");
-      out.print(inboxRs.getString("Message"));
-      out.write("\r\n");
-      out.write("                                            </div>\r\n");
-      out.write("\r\n");
-      out.write("                                        </div>\r\n");
-      out.write("\r\n");
-      out.write("                                        ");
-
-
-
-                                            }
-
-                                        
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                        </p>\r\n");
-      out.write("                                        <div class=\"modal-action\">\r\n");
-      out.write("                                            <form method=\"dialog\">\r\n");
-      out.write("                                                <!-- if there is a button in form, it will close the model -->\r\n");
-      out.write("                                                <button class=\"btn\">Close</button>\r\n");
-      out.write("                                            </form>\r\n");
-      out.write("                                        </div>\r\n");
-      out.write("                                    </div>\r\n");
-      out.write("                                </dialog>\r\n");
       out.write("\r\n");
       out.write("                                <button type=\"button\"\r\n");
       out.write("                                        class=\"  btn btn-outline btn-accent  flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800\"\r\n");
@@ -291,6 +154,11 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    </svg>\r\n");
       out.write("                                    Add product\r\n");
       out.write("                                </button>\r\n");
+      out.write("                                <form method=\"get\" action=\"hello-servlet\">\r\n");
+      out.write("\r\n");
+      out.write("                                   <input type=\"submit\" value=\"Refresh\">\r\n");
+      out.write("\r\n");
+      out.write("                                </form>\r\n");
       out.write("                                <dialog id=\"my_modal_3\" class=\"modal\">\r\n");
       out.write("                                    <div class=\"modal-box\">\r\n");
       out.write("                                        <h2 class=\"mb-4 text-xl font-bold text-gray-900 dark:text-white\">Add\r\n");
@@ -322,13 +190,14 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                           class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500\"\r\n");
       out.write("                                                           placeholder=\"$299\" required=\"\">\r\n");
       out.write("                                                </div>\r\n");
-      out.write("                                                \r\n");
-      out.write("                                                  <div class=\"w-full\">\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                                                <div class=\"w-full\">\r\n");
       out.write("                                                    <label for=\"quantity\"\r\n");
       out.write("                                                           class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-white\">Quantity</label>\r\n");
       out.write("                                                    <input type=\"number\" name=\"quantity\" id=\"quantity\"\r\n");
       out.write("                                                           class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500\"\r\n");
-      out.write("                                                            required=\"\">\r\n");
+      out.write("                                                           placeholder=\"$299\" required=\"\">\r\n");
       out.write("                                                </div>\r\n");
       out.write("\r\n");
       out.write("                                                <div>\r\n");
@@ -419,17 +288,6 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                           class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500\"\r\n");
       out.write("                                                           placeholder=\"$299\" required=\"\">\r\n");
       out.write("                                                </div>\r\n");
-      out.write("                                                \r\n");
-      out.write("                                                \r\n");
-      out.write("                                                <div class=\"w-full\">\r\n");
-      out.write("                                                    <label for=\"quantity\"\r\n");
-      out.write("                                                           class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-white\">Quantity</label>\r\n");
-      out.write("                                                    <input type=\"number\" name=\"quantity\" id=\"upQuantity\"\r\n");
-      out.write("                                                           class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500\"\r\n");
-      out.write("                                                           required=\"\">\r\n");
-      out.write("                                                </div>\r\n");
-      out.write("                                                \r\n");
-      out.write("                                                \r\n");
       out.write("                                                <div>\r\n");
       out.write("                                                    <label for=\"category\"\r\n");
       out.write("                                                           class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-white\">Category</label>\r\n");
@@ -491,21 +349,22 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </div>\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                        ");
-      out.write("\r\n");
-      out.write("                        ");
       out.write("\r\n");
       out.write("                        <div role=\"tablist\" class=\"tabs tabs-bordered\" >\r\n");
       out.write("                            <input type=\"radio\" name=\"my_tabs_1\" role=\"tab\" class=\"tab\" aria-label=\"Products\" checked/>\r\n");
       out.write("\r\n");
-      out.write("                            <div role=\"tabpanel\" class=\"tab-content p-10\" style=\"padding-left: 0px\" >\r\n");
+      out.write("                            <div role=\"tabpanel\" class=\"tab-content p-10\" style=\"padding: 0\">\r\n");
       out.write("\r\n");
-      out.write("                                <table class=\"w-full text-sm text-left text-gray-500 dark:text-gray-400 \" >\r\n");
+      out.write("                                <div class=\"overflow-x-auto sm:overflow-auto md:overflow-auto lg:overflow-auto xl:overflow-auto\">\r\n");
+      out.write("\r\n");
+      out.write("                                    <table class=\"w-full text-sm text-left text-gray-500 dark:text-gray-400 \">\r\n");
       out.write("                                    <thead class=\"text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400\">\r\n");
-      out.write("                                     <tr>\r\n");
+      out.write("                                    <tr>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("                                        <th scope=\"col\" class=\"px-4 py-3\">Image</th>\r\n");
-      out.write("                                        <th scope=\"col\" class=\"px-4 py-3\">Product name</th>\r\n");
+      out.write("                                        <th scope=\"col\" class=\"px-4 py-3\" style=\"width: 50px\">Product name</th>\r\n");
       out.write("                                        <th scope=\"col\" class=\"px-4 py-3\">Category</th>\r\n");
       out.write("                                        <th scope=\"col\" class=\"px-4 py-3\">Brand</th>\r\n");
       out.write("                                        <th scope=\"col\" class=\"px-4 py-3\">Description</th>\r\n");
@@ -517,124 +376,15 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    </tr>\r\n");
       out.write("                                    </thead>\r\n");
       out.write("                                    <tbody>\r\n");
-      out.write("\r\n");
-      out.write("                                    ");
-
-
-                                        String driver = "com.mysql.jdbc.Driver";
-                                        String url = "jdbc:mysql://localhost:3306/store";
-                                        String query = "SELECT * FROM product";
-
-
-                                        try {
-                                            Class.forName(driver);
-                                        } catch (ClassNotFoundException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                        Connection con = null;
-                                        try {
-                                            con = DriverManager.getConnection(url, "root", "");
-                                        } catch (SQLException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                        Statement st = null;
-                                        try {
-                                            st = con.createStatement();
-                                        } catch (SQLException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                        ResultSet rs = null;
-                                        try {
-                                            rs = st.executeQuery(query);
-                                        } catch (SQLException e) {
-                                            throw new RuntimeException(e);
-                                        }
-
-                                        while (true) {
-                                            try {
-                                                if (!rs.next()) break;
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                    
-      out.write("\r\n");
-      out.write("                                    <tr class=\"border-b dark:border-gray-700\">\r\n");
-      out.write("                                        <td class=\"px-4 py-3\">\r\n");
-      out.write("                                            <div class=\"flex items\r\n");
-      out.write("                                        -center space-x-3\">\r\n");
-      out.write("                                                <img src=\"images/");
-      out.print(rs.getString("Image"));
-      out.write("\" alt=\"Product image\"\r\n");
-      out.write("                                                     class=\"w-8 h-8 rounded-lg mask mask-squircle\">\r\n");
-      out.write("                                                <th scope=\"row\"\r\n");
-      out.write("                                                    class=\"px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white\">");
-      out.print(rs.getString("ProductName"));
-      out.write("\r\n");
-      out.write("                                                </th>\r\n");
-      out.write("                                            </div>\r\n");
-      out.write("                                        </td>\r\n");
-      out.write("                                        <td class=\"px-4 py-3\">");
-      out.print(rs.getString("Category"));
-      out.write("\r\n");
-      out.write("                                        </td>\r\n");
-      out.write("                                        <td class=\"px-4 py-3\">");
-      out.print(rs.getString("Brand"));
-      out.write("\r\n");
-      out.write("                                        </td>\r\n");
-      out.write("                                        <td class=\"px-4 py-3\">");
-      out.print(rs.getString("Description"));
-      out.write("\r\n");
-      out.write("                                        </td>\r\n");
-      out.write("                                        <td class=\"px-4 py-3\">");
-      out.print(rs.getString("Price"));
-      out.write("\r\n");
-      out.write("                                        </td>\r\n");
-      out.write("                                        \r\n");
-      out.write("                                        <td class=\"px-4 py-3\">");
-      out.print(rs.getString("quantity"));
-      out.write("</td>\r\n");
-      out.write("                                        \r\n");
-      out.write("                                        <td class=\"px-4 py-3 flex items-center justify-end\">\r\n");
-      out.write("                                            <form style=\"padding: 5px\">\r\n");
-      out.write("                                                <button class=\"btn btn-success\" type=\"button\"\r\n");
-      out.write("                                                        onclick=\"showEditModal('");
-      out.print(rs.getString("ProductID"));
-      out.write("', '");
-      out.print(rs.getString("ProductName"));
-      out.write("', '");
-      out.print(rs.getString("Brand"));
-      out.write("', '");
-      out.print(rs.getString("Price"));
-      out.write("', '");
-      out.print(rs.getString("Category"));
-      out.write("', '");
-      out.print(rs.getString("Description"));
-      out.write("', '");
-      out.print(rs.getString("Image"));
-      out.write("', '");
-      out.print(rs.getString("quantity"));
-      out.write("')\"\r\n");
-      out.write("                                                >Edit\r\n");
-      out.write("                                                </button>\r\n");
-      out.write("                                            </form>\r\n");
-      out.write("                                            <form action=\"hello-servlet?method=delete&ID=");
-      out.print(rs.getString("ProductID"));
-      out.write("\"\r\n");
-      out.write("                                                  method=\"post\" style=\"padding: 5px\">\r\n");
-      out.write("                                                <button class=\"btn btn-error\" type=\"submit\" onclick=\"showDeleteAlert()\">\r\n");
-      out.write("                                                    Delete\r\n");
-      out.write("                                                </button>\r\n");
-      out.write("                                            </form>\r\n");
-      out.write("                                        </td>\r\n");
-      out.write("                                    </tr>\r\n");
-      out.write("                                    ");
-
-                                        }
-                                    
+      out.write("                                ");
+      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+        return;
       out.write("\r\n");
       out.write("\r\n");
       out.write("                                    </tbody>\r\n");
       out.write("                                </table>\r\n");
+      out.write("\r\n");
+      out.write("                                </div>\r\n");
       out.write("\r\n");
       out.write("                            </div>\r\n");
       out.write("\r\n");
@@ -654,104 +404,11 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        </tr>\r\n");
       out.write("                                        </thead>\r\n");
       out.write("                                        <tbody>\r\n");
-      out.write("                                        ");
-
-
-                                            String query2 = "SELECT * FROM information";
-
-                                            try {
-                                                Class.forName(driver);
-                                            } catch (ClassNotFoundException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            try {
-                                                con = DriverManager.getConnection(url, "root", "");
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            try {
-                                                st = con.createStatement();
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            try {
-                                                rs = st.executeQuery(query2);
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            while (true) {
-                                                try {
-                                                    if (!rs.next()) break;
-                                                } catch (SQLException e) {
-                                                    throw new RuntimeException(e);
-                                                }
-
-                                        
       out.write("\r\n");
-      out.write("                                        <tr>\r\n");
+      out.write("                                ");
+      if (_jspx_meth_c_forEach_1(_jspx_page_context))
+        return;
       out.write("\r\n");
-      out.write("                                            <td class=\"px-4 py-3\" style=\"font-weight: bold\">\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                                <div class=\"badge badge-accent\">");
-      out.print(rs.getString("username"));
-      out.write("\r\n");
-      out.write("                                                </div>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("\r\n");
-      out.write("                                            <td class=\"px-4 py-3\">\r\n");
-      out.write("\r\n");
-      out.write("                                                ");
-      out.print(rs.getString("email"));
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("                                            <td class=\"px-4 py-3\">\r\n");
-      out.write("\r\n");
-      out.write("                                                ");
-      out.print(rs.getString("firstname"));
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            <td class=\"px-4 py-3\">\r\n");
-      out.write("\r\n");
-      out.write("                                                ");
-      out.print(rs.getString("lastname"));
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("\r\n");
-      out.write("                                            <td class=\"px-4 py-3\">\r\n");
-      out.write("\r\n");
-      out.write("                                                <form action=\"user-servlet?method=delete&UID=");
-      out.print(rs.getString("UserID"));
-      out.write("\"\r\n");
-      out.write("                                                      method=\"post\">\r\n");
-      out.write("                                                    <button class=\"btn btn-error btn-xs\">Remove</button>\r\n");
-      out.write("                                                </form>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("                                        </tr>\r\n");
-      out.write("\r\n");
-      out.write("                                        ");
-
-                                            }
-
-                                        
-      out.write("\r\n");
-      out.write("                                        <!-- row 2 -->\r\n");
-      out.write("\r\n");
-      out.write("                                        <!-- row 3 -->\r\n");
-      out.write("\r\n");
-      out.write("                                        <!-- row 4 -->\r\n");
       out.write("\r\n");
       out.write("                                        </tbody>\r\n");
       out.write("                                        <!-- foot -->\r\n");
@@ -781,127 +438,9 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("                                        <tbody>\r\n");
       out.write("\r\n");
-      out.write("                                        ");
-
-
-                                            String orderQuery = "SELECT orders.orderID, information.username, product.ProductName, product.Price , orders.Quantity FROM orders INNER JOIN information ON orders.UserID = information.UserID INNER JOIN product ON orders.productID = product.productID";
-                                            try {
-                                                Class.forName(driver);
-                                            } catch (ClassNotFoundException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                            try {
-                                                con = DriverManager.getConnection(url, "root", "");
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                            try {
-                                                st = con.createStatement();
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                            try {
-                                                rs = st.executeQuery(orderQuery);
-                                            } catch (SQLException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            while (true) {
-                                                try {
-                                                    if (!rs.next()) break;
-                                                } catch (SQLException e) {
-                                                    throw new RuntimeException(e);
-                                                }
-
-
-                                        
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                        <tr>\r\n");
-      out.write("\r\n");
-      out.write("                                            <td class=\"px-4 py-3\" style=\"font-weight: bold\">\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                                <div class=\"badge badge-accent\">\r\n");
-      out.write("\r\n");
-      out.write("                                                    ");
-      out.print(rs.getString("username"));
-      out.write("\r\n");
-      out.write("                                                </div>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("\r\n");
-      out.write("                                            <td class=\"px-4 py-3\">\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                                ");
-      out.print(rs.getString("ProductName"));
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("                                            <td class=\"px-4 py-3\">\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                                ");
-      out.print(rs.getString("Quantity"));
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            <td class=\"px-4 py-3\">\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                                ");
-
-                                                    int total;
-                                                    try {
-
-                                                        int price = 0;
-                                                        try {
-                                                            price = Integer.parseInt(rs.getString("Price"));
-                                                        } catch (SQLException e) {
-                                                            throw new RuntimeException(e);
-                                                        }
-                                                        int quantity = 0;
-                                                        try {
-                                                            quantity = Integer.parseInt(rs.getString("Quantity"));
-                                                        } catch (SQLException e) {
-                                                            throw new RuntimeException(e);
-                                                        }
-                                                        total = price * quantity;
-
-
-                                                    } catch (NumberFormatException e) {
-                                                        throw new RuntimeException(e);
-                                                    }
-
-                                                
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                                ");
-      out.print(total);
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("\r\n");
-      out.write("                                            <td class=\"px-4 py-3\">\r\n");
-      out.write("\r\n");
-      out.write("                                                <button class=\"btn btn-error btn-xs\">Remove</button>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("                                        </tr>\r\n");
-      out.write("\r\n");
-      out.write("                                        ");
-
-                                            }
-                                        
-      out.write("\r\n");
+      out.write("                                    ");
+      if (_jspx_meth_c_forEach_2(_jspx_page_context))
+        return;
       out.write("\r\n");
       out.write("                                        </tbody>\r\n");
       out.write("\r\n");
@@ -912,144 +451,9 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("                            </div>\r\n");
       out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write('\r');
-      out.write('\n');
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                            \r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("                        </div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("                     </div>\r\n");
       out.write("                </div>\r\n");
       out.write("            </section>\r\n");
@@ -1070,5 +474,287 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
+  }
+
+  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_0.setParent(null);
+    _jspx_th_c_forEach_0.setVar("product");
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${products}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
+      if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("                                    <tr class=\"border-b dark:border-gray-700\">\r\n");
+          out.write("                                        <td class=\"px-4 py-3\">\r\n");
+          out.write("                                            <div class=\"flex items\r\n");
+          out.write("                                        -center space-x-3\">\r\n");
+          out.write("                                                <img src=\"images/");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getFileName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" alt=\"Product image\"\r\n");
+          out.write("                                                     class=\"w-8 h-8 rounded-lg mask mask-squircle\">\r\n");
+          out.write("                                                <th scope=\"row\"\r\n");
+          out.write("                                                    class=\"px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getProductName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                                </th>\r\n");
+          out.write("                                            </div>\r\n");
+          out.write("                                        </td>\r\n");
+          out.write("                                        <td class=\"px-4 py-3\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getCategory()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                        </td>\r\n");
+          out.write("                                        <td class=\"px-4 py-3\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getBrand()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                        </td>\r\n");
+          out.write("                                        <td class=\"px-4 py-3\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getDescription()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                        </td>\r\n");
+          out.write("                                        <td class=\"px-4 py-3\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getPrice()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                        </td>\r\n");
+          out.write("                                        <td class=\"px-4 py-3\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getQuantity()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</td>\r\n");
+          out.write("                                        <td class=\"px-4 py-3 flex items-center justify-end\">\r\n");
+          out.write("                                            <form style=\"padding: 5px\">\r\n");
+          out.write("                                                <button class=\"btn btn-success\" type=\"button\"\r\n");
+          out.write("                                                        onclick=\"showEditModal('");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getID()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("', '");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getProductName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("', '");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getBrand()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("', '");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getPrice()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("',\r\n");
+          out.write("                                                                '");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getCategory()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("', '");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getDescription()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("', '");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getFileName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("')\"\r\n");
+          out.write("                                                >Edit\r\n");
+          out.write("                                                </button>\r\n");
+          out.write("                                            </form>\r\n");
+          out.write("                                            <form action=\"hello-servlet?method=delete&ID=");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${product.getID()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\"\r\n");
+          out.write("                                                  method=\"post\" style=\"padding: 5px\">\r\n");
+          out.write("                                                <button class=\"btn btn-error\" type=\"submit\" onclick=\"showDeleteAlert()\">\r\n");
+          out.write("                                                    Delete\r\n");
+          out.write("                                                </button>\r\n");
+          out.write("                                            </form>\r\n");
+          out.write("                                        </td>\r\n");
+          out.write("                                    </tr>\r\n");
+          out.write("                                ");
+          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_0.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
+    }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_1.setParent(null);
+    _jspx_th_c_forEach_1.setVar("user");
+    _jspx_th_c_forEach_1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int[] _jspx_push_body_count_c_forEach_1 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
+      if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("                                        <tr>\r\n");
+          out.write("                                            <td class=\"px-4 py-3\" style=\"font-weight: bold\">\r\n");
+          out.write("                                                <div class=\"badge badge-accent\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.getUsername()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                                </div>\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("                                            <td class=\"px-4 py-3\">\r\n");
+          out.write("                                                    ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.getEmail()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("                                            <td class=\"px-4 py-3\">\r\n");
+          out.write("                                                    ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.getFirstName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("                                            <td class=\"px-4 py-3\">\r\n");
+          out.write("                                                    ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.getLastName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("                                            <td class=\"px-4 py-3\">\r\n");
+          out.write("                                                <form action=\"user-servlet?method=delete&UID=");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.getUID()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\"\r\n");
+          out.write("                                                      method=\"post\">\r\n");
+          out.write("                                                    <button class=\"btn btn-error btn-xs\">Remove</button>\r\n");
+          out.write("                                                </form>\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("                                        </tr>\r\n");
+          out.write("                                ");
+          int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_1[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_1.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_1.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_1);
+    }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_2(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_2 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_2.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_2.setParent(null);
+    _jspx_th_c_forEach_2.setVar("order");
+    _jspx_th_c_forEach_2.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${order}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int[] _jspx_push_body_count_c_forEach_2 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_2 = _jspx_th_c_forEach_2.doStartTag();
+      if (_jspx_eval_c_forEach_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("                                        <tr>\r\n");
+          out.write("\r\n");
+          out.write("                                            <td class=\"px-4 py-3\" style=\"font-weight: bold\">\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                                <div class=\"badge badge-accent\">\r\n");
+          out.write("\r\n");
+          out.write("                                                    ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${order.getOrderUserName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                                </div>\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("\r\n");
+          out.write("                                            <td class=\"px-4 py-3\">\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                                ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${order.getOrderProductName()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("                                            <td class=\"px-4 py-3\">\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                                ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${order.getOrderQuantity() }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                            <td class=\"px-4 py-3\">\r\n");
+          out.write("\r\n");
+          out.write("                                                ");
+          if (_jspx_meth_c_set_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_2, _jspx_page_context, _jspx_push_body_count_c_forEach_2))
+            return true;
+          out.write("\r\n");
+          out.write("                                                ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${totalPrice}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("\r\n");
+          out.write("                                            <td class=\"px-4 py-3\">\r\n");
+          out.write("\r\n");
+          out.write("                                                <button class=\"btn btn-error btn-xs\">Remove</button>\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                            </td>\r\n");
+          out.write("                                        </tr>\r\n");
+          out.write("\r\n");
+          out.write("                                    ");
+          int evalDoAfterBody = _jspx_th_c_forEach_2.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_2[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_2.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_2.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_2);
+    }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_set_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_2, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_2)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_0 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_2);
+    _jspx_th_c_set_0.setVar("totalPrice");
+    _jspx_th_c_set_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${order.getOrderPrice() * order.getOrderQuantity()}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_0 = _jspx_th_c_set_0.doStartTag();
+    if (_jspx_th_c_set_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_0);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_0);
+    return false;
   }
 }

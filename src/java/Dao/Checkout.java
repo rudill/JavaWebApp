@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 public class Checkout 
 
 {
-    
     private Connection connection;
     
     public void connectDB() throws SQLException {

@@ -28,7 +28,6 @@ public class OrderDetails {
         this.Address = Address;
         this.Phoneno =Phoneno;
     }
-
     // Getter methods
     public String getProductName() {
         return productName;

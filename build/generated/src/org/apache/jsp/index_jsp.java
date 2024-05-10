@@ -113,24 +113,21 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </button>\n");
       out.write("        <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n");
       out.write("            <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\n");
-      out.write("                <!-- Products link -->\n");
-      out.write("                <li class=\"nav-item\">\n");
-      out.write("                    <a class=\"nav-link\" href=\"#\" role=\"button\" aria-expanded=\"false\"> Products </a>\n");
-      out.write("                </li>\n");
+      out.write("               \n");
       out.write("                <!-- Category dropdown -->\n");
       out.write("                <li class=\"nav-item dropdown\">\n");
       out.write("                    <a class=\"nav-link dropdown-toggle\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"> Category </a>\n");
       out.write("                    <ul class=\"dropdown-menu\">\n");
       out.write("                        <!-- All Products -->\n");
-      out.write("                        <li><a class=\"dropdown-item\" href=\"./All.jsp\">All Products</a></li>\n");
-      out.write("                        <!-- Hardcoded categories -->\n");
-      out.write("                        <li><a class=\"dropdown-item\" href=\"./phone.jsp\">Smartphones</a></li>\n");
-      out.write("                        <li><a class=\"dropdown-item\" href=\"./headphones.jsp\">Headphones/Earbuds</a></li>\n");
-      out.write("                        <li><a class=\"dropdown-item\" href=\"./smartwatches.jsp\">Smartwatches</a></li>\n");
-      out.write("                        <li><a class=\"dropdown-item\" href=\"./chargers.jsp\">Chargers & Cables</a></li>\n");
-      out.write("                        <li><a class=\"dropdown-item\" href=\"./powerbanks.jsp\">Power banks</a></li>\n");
+      out.write("                        <li><a class=\"dropdown-item\" href=Product?Category=all>All Products</a></li>\n");
+      out.write("                        <li><a class=\"dropdown-item\" href=Product?Category=phone>Smartphones</a></li>\n");
+      out.write("                        <li><a class=\"dropdown-item\" href=Product?Category=headphone>Headphones/Earbuds</a></li>\n");
+      out.write("                        <li><a class=\"dropdown-item\" href=Product?Category=smartwatch>Smartwatches</a></li>\n");
+      out.write("                        <li><a class=\"dropdown-item\" href=Product?Category=chargers>Chargers & Cables</a></li>\n");
+      out.write("                        <li><a class=\"dropdown-item\" href=Product?Category=powerbank>Power banks</a></li>\n");
       out.write("                    </ul>\n");
       out.write("                </li>\n");
+      out.write("                 <a class=\"nav-link\" href=\"OrderHistory\" role=\"button\" aria-expanded=\"false\"> Order History </a>\n");
       out.write("            </ul>\n");
       out.write("           \n");
       out.write("            \n");
@@ -154,12 +151,29 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <i class=\"fa-solid fa-cart-shopping\" style=\"color: #ffffff;\"></i> &nbsp;Cart\n");
       out.write("                        \n");
       out.write("                    </a>\n");
+      out.write("                        \n");
       out.write("                </li>\n");
-      out.write("               \n");
+      out.write("                \n");
       out.write("               \n");
       out.write("            </ul>\n");
+      out.write("                ");
+
+
+        String username = (String) session.getAttribute("loggeduser");
+
+            if (username == null) {
+    
+           out.print("<a class=\"nav-link\" href=\"./login.jsp\" role=\"button\" aria-expanded=\"false\"> LOGIN </a>");
+
+         } else {
+              
+              out.println("<a class=\"nav-link\" href=\"logout\" role=\"button\" aria-expanded=\"false\"> LOGOUT </a>");
+            }
+    
+          
       out.write("         \n");
-      out.write("          \n");
+      out.write("                        \n");
+      out.write("      \n");
       out.write("      </div>\n");
       out.write("        </div>\n");
       out.write("    </div>\n");

@@ -25,11 +25,12 @@
           <div class="col-xs-6 col-md-3">
             <h6>Categories</h6>
             <ul class="footer-links">
-              <li><a href="./phone.jsp">Smartphones</a></li>
-              <li><a href="./headphones.jsp">Headphones/Earbuds</a></li>
-              <li><a href="./smartwatches.jsp">Smartwatches</a></li>
-              <li><a href="./chargers.jsp">Chargers & Cables</a></li>
-              <li><a href="./powerbanks.jsp">Power banks</a></li>
+              <li><a href=Product?Category=all>All Products</a></li>
+              <li><a href=Product?Category=phone>Smartphones</a></li>
+              <li><a href=Product?Category=headphone>Headphones/Earbuds</a></li>
+              <li><a href=Product?Category=smartwatch>Smartwatches</a></li>
+              <li><a href=Product?Category=chargers>Chargers & Cables</a></li>
+              <li><a href=Product?Category=powerbank>Power banks</a></li>
               
             </ul>
           </div>
@@ -38,7 +39,7 @@
             <h6>Quick Links</h6>
             <ul class="footer-links">
               <li><a href="./about.jsp">About Us</a></li>
-              <li><a href="./contact">Contact Us</a></li>
+              <li><a href="./contact.jsp">Contact Us</a></li>
               <li><a href="#">Privacy Policy</a></li>
               
             </ul>

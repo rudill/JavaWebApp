@@ -37,6 +37,13 @@
             <form class="form-horizontal" method="post" action="CheckoutServlet">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                     <!-- REVIEW ORDER -->
+          <%
+
+        Integer userId = (Integer) session.getAttribute("auth");
+            if (userId == null) {
+          out.println("You are not logged in. Please log in to Buy your products. <a href=\"login.jsp\">LOGIN</a>");
+         } else {
+          %>
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             Your Order <div class="pull-right"><small><a class="afix-1" href="Cart.jsp">Edit Cart</a></small></div>
@@ -90,13 +97,11 @@
                         <div class="panel-heading">Address</div>
                         <div class="panel-body">
                             
-                         
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <strong> Name:</strong>
                                     <input type="text" name="name" class="form-control" value="" />
-                                </div>
-                                
+                                </div> 
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Address:</strong></div>
@@ -110,8 +115,6 @@
                                     <input type="text" name="city" class="form-control" value="" />
                                 </div>
                             </div>
-                            
-                            
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
                                 <div class="col-md-12">
@@ -127,23 +130,20 @@
                                 <div class="col-md-12"><input type="text" name="email" class="form-control" value="" /></div>
                             </div>
                             <input type="hidden" name="date" value="<%= new java.util.Date() %>">
-                            <% 
-                                  Integer useridObj = (Integer) session.getAttribute("auth");
-                                  int userid = (useridObj != null) ? useridObj : 0; // default value is 0 if useridObj is null
-                            %>
+                           
                             
                             
-                            <input type="hidden" name="userid" value="<%= userid %>">
+                            <input type="hidden" name="userid" value="<%= userId %>">
                         </div>
                     </div>
                     <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
+                                    <a href="OrderHistory"      <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button></a>
                                 </div>
                                 </div>
                     <!-- SHIPPING METHOD END -->
                 </div>
-                                
+              <% }%>                  
                                 
             </form>
         </div>

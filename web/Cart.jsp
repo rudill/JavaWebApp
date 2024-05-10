@@ -19,10 +19,10 @@
         
         <style>
             .carttable {
-    margin-top: 30px;    /* Adds 10 pixels of margin to the top */
-    margin-right: 40px;  /* Adds 20 pixels of margin to the right */
-    margin-bottom: 15px; /* Adds 15 pixels of margin to the bottom */
-    margin-left: 40px;   /* Adds 25 pixels of margin to the left */
+    margin-top: 30px;    
+    margin-right: 40px;  
+    margin-bottom: 15px; 
+    margin-left: 40px;   
 }
 
         </style>

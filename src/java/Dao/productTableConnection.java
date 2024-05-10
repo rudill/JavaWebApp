@@ -1,120 +1,131 @@
 package Dao;
 
+import model.productData;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+
 
 public class productTableConnection {
-    public static void insertToDb(String productName, String brand, String price, String category, String description, String fileName, String quantity) {
-        String driver = "com.mysql.jdbc.Driver";
-         String url = "jdbc:mysql://localhost:3306/store";
-        String query = "INSERT INTO product (ProductName, Brand, Price, Category, Description, Image, quantity) VALUES ('"+ productName +"', '"+ brand +"', '"+ price +"', '"+category+"' , '"+ description +"' , '"+ fileName +"', '"+ quantity +"')";
-        dbDriver(driver, url, query);
-    }
 
-    private static void dbDriver(String driver, String url, String query) {
+
+    private static Connection connection;
+
+
+    public static void dbConnection(){
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/store";
+
         try {
             Class.forName(driver);
-            Connection con = DriverManager.getConnection(url,"root","");
-            Statement st = con.createStatement();
-            st.executeUpdate(query);
-            System.out.println("MySQL Operation Success !");
-
+            connection = DriverManager.getConnection(url, "root", "");
+            System.out.println("MySQL Connection Success !");
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("MySQL Operation Failed !");
+            System.out.println("MySQL Connection Failed !");
             throw new RuntimeException(e);
         }
     }
 
-    public static List<Map<String, Object>> fetchAllFromDb() {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/store";
+
+    public static void insertTopProduct(String productName, String brand, String price, String category, String description, String fileName, String quantity)
+            throws SQLException {
+        dbConnection();
+
+        String query = "INSERT INTO product (ProductName, Brand, Price, Category, Description, Image, quantity) VALUES " +
+                "('"+ productName +"', '"+ brand +"', '"+ price +"', '"+category+"' , '"+ description +"' , '"+ fileName +"', '"+ quantity +"')";
+        Statement st = connection.createStatement();
+        st.executeUpdate(query);
+
+    }
+
+
+
+    public static List<productData> fetchFromProduct() {
+        dbConnection();
         String query = "SELECT * FROM product";
 
-        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<productData> resultList = new ArrayList<>();
 
         try {
-            Class.forName(driver);
-            Connection con = DriverManager.getConnection(url,"root","");
-            Statement st = con.createStatement();
+
+            Statement st =connection.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                Map<String, Object> row = new HashMap<>();
-                row.put("ID", rs.getString("ID"));
-                row.put("ProductName", rs.getString("ProductName"));
-                row.put("Brand", rs.getString("Brand"));
-                row.put("Price", rs.getString("Price"));
-                row.put("Category", rs.getString("Category"));
-                row.put("Description", rs.getString("Description"));
-                row.put("Image", rs.getString("Image"));
+                productData showProduct = new productData();
 
-                resultList.add(row);
+                showProduct.setID(rs.getString("ProductID"));
+                showProduct.setProductName(rs.getString("ProductName"));
+                showProduct.setBrand(rs.getString("Brand"));
+                showProduct.setPrice(rs.getString("Price"));
+                showProduct.setCategory(rs.getString("Category"));
+                showProduct.setDescription(rs.getString("Description"));
+                showProduct.setFileName(rs.getString("Image"));
+                showProduct.setQuantity(rs.getString("quantity"));
+
+                resultList.add(showProduct);
             }
-
             System.out.println("MySQL Operation Success !");
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println("MySQL Operation Failed !");
             throw new RuntimeException(e);
         }
-
         return resultList;
     }
-//
-public static void updateToDb(String ID, String productName, String brand, String price, String category, String description, String fileName, String quantity) {
-    String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/store";
-    String query = "UPDATE product SET ProductName = ?, Brand = ?, Price = ?, Category = ?, Description = ?, Image = ?, quantity = ? WHERE productID = ?";
+
+
+public static void updateToProduct(String ID, String productName, String brand, String price, String category, String description, String fileName) {
+
+    dbConnection();
+    String query = "UPDATE product SET ProductName = ?, Brand = ?, Price = ?, Category = ?, Description = ?, Image = ? WHERE productID = ?";
 
     try {
-        Class.forName(driver);
-        Connection con = DriverManager.getConnection(url,"root","");
-        PreparedStatement st = con.prepareStatement(query);
+
+        PreparedStatement st = connection.prepareStatement(query);
         st.setString(1, productName);
         st.setString(2, brand);
         st.setString(3, price);
         st.setString(4, category);
         st.setString(5, description);
         st.setString(6, fileName);
-        st.setString(7 , quantity);
-        st.setString(8, ID);
+        st.setString(7, ID);
 
         st.executeUpdate();
         System.out.println("MySQL Operation Success !");
 
-    }  catch (ClassNotFoundException | SQLException e) {
+    }  catch (SQLException e) {
         System.out.println("MySQL Operation Failed !");
         throw new RuntimeException(e);
     }
 }
-//
-   public static void deleteFromDb(String ID) {
-       String driver = "com.mysql.jdbc.Driver";
-         String url = "jdbc:mysql://localhost:3306/store";
-    String deleteOrdersQuery = "DELETE FROM orders WHERE ProductID = ?";
-    String deleteProductQuery = "DELETE FROM product WHERE ProductID= ?";
+
+   public static void deleteFromProduct(String ID) {
+       dbConnection();
+
+        String deleteOrdersQuery = "DELETE FROM orders WHERE ProductID = ?";
+        String deleteProductQuery = "DELETE FROM product WHERE ProductID= ?";
 
     try {
-        Class.forName(driver);
-        Connection con = DriverManager.getConnection(url,"root","");
+
 
         // Delete referencing rows from orders table
-        PreparedStatement deleteOrdersStmt = con.prepareStatement(deleteOrdersQuery);
+        PreparedStatement deleteOrdersStmt =  connection.prepareStatement(deleteOrdersQuery);
         deleteOrdersStmt.setString(1, ID);
         deleteOrdersStmt.executeUpdate();
 
         // Delete product
-        PreparedStatement deleteProductStmt = con.prepareStatement(deleteProductQuery);
+        PreparedStatement deleteProductStmt = connection.prepareStatement(deleteProductQuery);
         deleteProductStmt.setString(1, ID);
         deleteProductStmt.executeUpdate();
 
         System.out.println("MySQL Operation Success !");
-    } catch (ClassNotFoundException | SQLException e) {
+    } catch (SQLException e) {
         System.out.println("MySQL Operation Failed !");
         throw new RuntimeException(e);
     }
 }
+
 }

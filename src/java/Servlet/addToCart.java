@@ -67,7 +67,7 @@ public class addToCart extends HttpServlet {
         String Category = request.getParameter("Category");
         String Image = request.getParameter("Image");
         int Quantity=1;
-        int userid =1;
+        int userid =3;
         
       
         

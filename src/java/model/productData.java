@@ -12,9 +12,6 @@ public class productData {
         return productName;
     }
 
-
-
-
     private String brand;
 
     public void setBrand(String brand){
@@ -24,9 +21,6 @@ public class productData {
     public String getBrand(){
         return brand;
     }
-
-
-
 
     private String price;
 
@@ -38,8 +32,6 @@ public class productData {
         return price;
     }
 
-
-
     private String quantity;
 
     public void setQuantity(String quantity){
@@ -49,10 +41,6 @@ public class productData {
     public String getQuantity(){
         return quantity;
     }
-
-
-
-
 
     private String category;
 
@@ -65,10 +53,6 @@ public class productData {
         return category;
     }
 
-
-
-
-
     private String description;
 
     public void setDescription(String description){
@@ -78,10 +62,6 @@ public class productData {
     public String getDescription(){
         return description;
     }
-
-
-
-
 
     private String fileName;
 
@@ -93,8 +73,6 @@ public class productData {
         return fileName;
     }
 
-
-
     private String ID;
 
     public void setID(String ID){
@@ -104,8 +82,6 @@ public class productData {
     public String getID(){
         return ID;
     }
-
-
 
 }
 

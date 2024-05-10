@@ -30,24 +30,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Products link -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#" role="button" aria-expanded="false"> Products </a>
-                </li>
+               
                 <!-- Category dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Category </a>
                     <ul class="dropdown-menu">
                         <!-- All Products -->
-                        <li><a class="dropdown-item" href="./All.jsp">All Products</a></li>
-                        <!-- Hardcoded categories -->
-                        <li><a class="dropdown-item" href="./phone.jsp">Smart phones</a></li>
-                        <li><a class="dropdown-item" href="./headphones.jsp">Headphones/Earbuds</a></li>
-                        <li><a class="dropdown-item" href="./smartwatches.jsp">Smart watches</a></li>
-                        <li><a class="dropdown-item" href="./chargers.jsp">Chargers & Cables</a></li>
-                        <li><a class="dropdown-item" href="./powerbanks.jsp">Power banks</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=all>All Products</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=phone>Smartphones</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=headphone>Headphones/Earbuds</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=smartwatch>Smartwatches</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=chargers>Chargers & Cables</a></li>
+                        <li><a class="dropdown-item" href=Product?Category=powerbank>Power banks</a></li>
                     </ul>
                 </li>
+                 <a class="nav-link" href="OrderHistory" role="button" aria-expanded="false"> Order History </a>
             </ul>
            
             
@@ -67,28 +64,27 @@
                         <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> &nbsp;Cart
                         
                     </a>
+                        
                 </li>
-               
+                
                
             </ul>
+                <%
+
+        String username = (String) session.getAttribute("loggeduser");
+
+            if (username == null) {
+    
+           out.print("<a class=\"nav-link\" href=\"./login.jsp\" role=\"button\" aria-expanded=\"false\"> LOGIN </a>");
+
+         } else {
+              
+              out.println("<a class=\"nav-link\" href=\"logout\" role=\"button\" aria-expanded=\"false\"> LOGOUT </a>");
+            }
+    
+          %>         
                         
-            <ul class="navbar-nav ml-auto" style="padding-left: 10px">
-                <!-- Cart link -->
-                <li class="nav-item active pe-3">
-   
-                    
-                   <a class="nav-link position-relative" aria-current="page" href="login.jsp"> 
-<!--                    <i class="fa-solid fa-user fa-lg" style="color: white"></i>-->
-                    <i class="fa-solid fa-right-to-bracket fa-lg" style="color: white"></i>
-                   </a>
-                        
-                    </a>
-                </li>
-               
-               
-            </ul>
-         
-          
+      
       </div>
         </div>
     </div>
