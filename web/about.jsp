@@ -10,7 +10,7 @@
     <head>
          <%@include file="Components/common_css_js.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title> Page</title>
         <link rel="stylesheet" href="css/abo.css">
     </head>
     <body>
