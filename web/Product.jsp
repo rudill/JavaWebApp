@@ -11,7 +11,7 @@
 <html>
 <head>
     <%@include file="Components/common_css_js.jsp"%>
-    <title>Product List</title>
+    <title>Product Listing</title>
     
      <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.tailwindcss.com"></script>
